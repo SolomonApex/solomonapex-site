@@ -3,405 +3,185 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Solomon Apex — Operational Intelligence for Leaders</title>
+  <title>Solomon Apex — A Real Path to Launch</title>
+  <meta name="description" content="Solomon Apex gives you the structure, the tools, and the AI-assisted process to turn what you know into a real offer — and actually get it out the door.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --black: #0A0A0A;
-      --white: #FAFAFA;
-      --accent: #C8A96A;
-      --gray-1: #1A1A1A;
-      --gray-2: #2C2C2C;
-      --gray-3: #6B6B6B;
-      --gray-4: #A0A0A0;
-      --serif: 'DM Serif Display', Georgia, serif;
-      --sans: 'Inter', system-ui, sans-serif;
-    }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--black);
-      color: var(--white);
-      font-family: var(--sans);
-      font-weight: 300;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      padding: 24px 48px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 100;
-      background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
-    }
-    .nav-logo {
-      font-family: var(--serif);
-      font-size: 18px;
-      letter-spacing: 0.02em;
-      color: var(--white);
-      text-decoration: none;
-    }
-    .nav-logo span { color: var(--accent); }
-    .nav-cta {
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(200,169,106,0.4);
-      padding-bottom: 2px;
-      transition: border-color 0.2s;
-    }
-    .nav-cta:hover { border-color: var(--accent); }
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 120px 48px 80px;
-      max-width: 900px;
-    }
-    .hero-eyebrow {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 32px;
-    }
-    .hero h1 {
-      font-family: var(--serif);
-      font-size: clamp(42px, 7vw, 76px);
-      line-height: 1.08;
-      letter-spacing: -0.01em;
-      color: var(--white);
-      margin-bottom: 32px;
-    }
-    .hero h1 em { font-style: italic; color: var(--accent); }
-    .hero-body {
-      font-size: 17px;
-      font-weight: 300;
-      color: var(--gray-4);
-      max-width: 560px;
-      line-height: 1.75;
-      margin-bottom: 48px;
-    }
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-      flex-wrap: wrap;
-    }
-    .btn-primary {
-      display: inline-block;
-      padding: 16px 36px;
-      background: var(--accent);
-      color: var(--black);
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-    .btn-primary:hover { opacity: 0.88; }
-    .btn-ghost {
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      color: var(--gray-4);
-      text-decoration: none;
-      border-bottom: 1px solid var(--gray-2);
-      padding-bottom: 2px;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .btn-ghost:hover { color: var(--white); border-color: var(--gray-4); }
-    .divider {
-      width: 48px;
-      height: 1px;
-      background: var(--accent);
-      margin: 0 48px;
-      opacity: 0.4;
-    }
-    section {
-      padding: 96px 48px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    .section-label {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 24px;
-    }
-    .section-heading {
-      font-family: var(--serif);
-      font-size: clamp(28px, 4vw, 44px);
-      line-height: 1.15;
-      color: var(--white);
-      margin-bottom: 20px;
-      max-width: 640px;
-    }
-    .section-body {
-      font-size: 16px;
-      color: var(--gray-4);
-      max-width: 580px;
-      line-height: 1.8;
-      margin-bottom: 48px;
-    }
-    .problem-bg {
-      background: var(--gray-1);
-      border-top: 1px solid var(--gray-2);
-      border-bottom: 1px solid var(--gray-2);
-    }
-    .problem-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 48px;
-      margin-top: 56px;
-    }
-    .problem-number {
-      font-family: var(--serif);
-      font-size: 42px;
-      color: var(--accent);
-      line-height: 1;
-      margin-bottom: 16px;
-      opacity: 0.6;
-    }
-    .problem-title {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--white);
-      margin-bottom: 10px;
-    }
-    .problem-desc {
-      font-size: 14px;
-      color: var(--gray-4);
-      line-height: 1.75;
-    }
-    .steps {
-      display: flex;
-      flex-direction: column;
-      margin-top: 56px;
-      max-width: 680px;
-    }
-    .step {
-      display: grid;
-      grid-template-columns: 48px 1fr;
-      gap: 24px;
-      padding: 32px 0;
-      border-bottom: 1px solid var(--gray-2);
-    }
-    .step:first-child { border-top: 1px solid var(--gray-2); }
-    .step-num {
-      font-family: var(--serif);
-      font-size: 13px;
-      color: var(--accent);
-      padding-top: 4px;
-      opacity: 0.7;
-    }
-    .step-title {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--white);
-      margin-bottom: 8px;
-    }
-    .step-desc {
-      font-size: 14px;
-      color: var(--gray-4);
-      line-height: 1.7;
-    }
-    .serve-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2px;
-      margin-top: 48px;
-    }
-    .serve-item {
-      padding: 32px 28px;
-      border: 1px solid var(--gray-2);
-    }
-    .serve-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--white);
-      margin-bottom: 8px;
-    }
-    .serve-desc {
-      font-size: 13px;
-      color: var(--gray-4);
-      line-height: 1.65;
-    }
-    .cta-section {
-      text-align: center;
-      padding: 120px 48px;
-      background: var(--gray-1);
-      border-top: 1px solid var(--gray-2);
-    }
-    .cta-section .section-heading {
-      margin: 0 auto 20px;
-      text-align: center;
-      max-width: 520px;
-    }
-    .cta-section .section-body {
-      margin: 0 auto 40px;
-      text-align: center;
-    }
-    footer {
-      padding: 40px 48px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid var(--gray-2);
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-    .footer-logo {
-      font-family: var(--serif);
-      font-size: 15px;
-      color: var(--gray-3);
-    }
-    .footer-logo span { color: var(--accent); }
-    .footer-copy {
-      font-size: 12px;
-      color: var(--gray-3);
-      letter-spacing: 0.04em;
-    }
-    @media (max-width: 768px) {
-      nav { padding: 20px 24px; }
-      .hero { padding: 100px 24px 60px; }
-      section { padding: 64px 24px; }
-      .divider { margin: 0 24px; }
-      .cta-section { padding: 80px 24px; }
-      footer { padding: 32px 24px; }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <nav>
     <a href="/" class="nav-logo">Solomon <span>Apex</span></a>
-    <a href="#audit" class="nav-cta">Book an Audit</a>
+    <div class="nav-links">
+      <a href="#how-it-works">How It Works</a>
+      <a href="/launch-ready.html">Launch Ready</a>
+      <a href="/about.html">About</a>
+      <a href="/blueprint.html" class="nav-cta">Get the Blueprint — Free</a>
+    </div>
   </nav>
 
-  <div class="hero">
-    <p class="hero-eyebrow">Operational Intelligence</p>
-    <h1>Your business runs on<br><em>people holding it together.</em><br>It shouldn't.</h1>
-    <p class="hero-body">Solomon Apex builds the operational systems that replace institutional knowledge with reliable process — so your organization runs when people are absent, distracted, or growing.</p>
+  <!-- HERO -->
+  <div class="hero" id="top">
+    <span class="hero-eyebrow">AI Business Builder</span>
+    <h1>You Already Know Enough.<br><em>You Just Need a Real Path to Launch.</em></h1>
+    <p class="hero-sub">Solomon Apex gives you the structure, the tools, and the AI-assisted process to turn what you know into a real offer — and actually get it out the door.</p>
     <div class="hero-actions">
-      <a href="#audit" class="btn-primary">Book a Free Audit</a>
-      <a href="#how" class="btn-ghost">How it works</a>
+      <a href="/blueprint.html" class="btn-primary">Get the First Offer Blueprint — Free</a>
+      <p class="hero-note">No pitch inside. The Blueprint does real work. Enter your email and get it now.</p>
+      <p class="hero-secondary">Already know what you want to build? <a href="/launch-ready.html">See Launch Ready ($97) →</a></p>
     </div>
   </div>
 
-  <div class="divider"></div>
+  <div class="divider-h"></div>
 
-  <div class="problem-bg">
-    <section>
-      <p class="section-label">The Problem</p>
-      <h2 class="section-heading">Most organizations aren't broken. They're just undesigned.</h2>
-      <p class="section-body">Your team is competent. Your mission is clear. But the systems holding everything together exist only in people's heads — and that's costing you more than you realize.</p>
-      <div class="problem-grid">
-        <div class="problem-item">
-          <div class="problem-number">01</div>
-          <div class="problem-title">The Operations Gap</div>
-          <div class="problem-desc">The distance between how your organization runs and how it could run if someone had intentionally designed it.</div>
-        </div>
-        <div class="problem-item">
-          <div class="problem-number">02</div>
-          <div class="problem-title">The Hidden Cost</div>
-          <div class="problem-desc">It shows up as late nights, missed follow-ups, and the constant feeling that your business depends entirely on you.</div>
-        </div>
-        <div class="problem-item">
-          <div class="problem-number">03</div>
-          <div class="problem-title">The Wrong Fix</div>
-          <div class="problem-desc">Hiring more people or adding more tools creates more complexity. Neither addresses the root cause.</div>
-        </div>
+  <!-- PROBLEM -->
+  <div class="dark-section">
+    <div class="section">
+      <span class="section-label">The Problem</span>
+      <h2 class="section-heading">The Problem Isn't That You're Not Ready.</h2>
+      <p class="section-body">Most people who want to build something real — a service, a product, an income stream — aren't stuck because they lack ability. They're stuck because no one gave them a workable path from where they are to something they can actually sell.</p>
+      <p class="section-body">You've probably read the books. Watched the YouTube channels. Taken a course or two. And you still don't have an offer in the market.</p>
+      <p class="section-body">That's not a motivation problem. That's a structure problem.</p>
+      <p class="section-body">The internet is full of content about starting a business. Almost none of it tells you exactly what to build, who to sell it to, what to charge, or how to get it in front of anyone. So capable people sit in planning mode — for months, sometimes years — because "figure it out yourself" isn't a launch plan.</p>
+      <p class="section-body">That's what Solomon is built to fix.</p>
+      <div class="pull-quote">
+        <p>"I know what I'm good at. I just have no idea how to turn it into something someone would actually pay for."</p>
       </div>
-    </section>
+    </div>
   </div>
 
-  <section id="how">
-    <p class="section-label">How We Work</p>
-    <h2 class="section-heading">Operational design, not consulting.</h2>
-    <p class="section-body">We don't hand you a report and leave. We map your operation, identify what's breaking it, and build the systems that fix it — with AI where it creates leverage.</p>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">I.</div>
-        <div class="step-content">
-          <div class="step-title">Audit</div>
-          <div class="step-desc">We map how work actually flows through your organization — where it's created, where it breaks, where it depends on one person knowing everything.</div>
+  <!-- WHAT SOLOMON IS -->
+  <div class="section">
+    <span class="section-label">What Solomon Is</span>
+    <h2 class="section-heading">What Solomon Is — Plain and Simple</h2>
+    <p class="section-body">Solomon Apex is an AI-assisted build system for people who want to launch a real offer — a service, a digital product, a consulting practice, a side income — but haven't found a clear way to do it yet.</p>
+    <p class="section-body">It's not a course. It's not a coaching program. It's not a prompt library or an AI tutorial.</p>
+    <p class="section-body">Solomon is a structured process — with AI doing the heavy work at every step — that walks you from a rough idea to a defined, packaged, and launch-ready offer. The system does the scaffolding. You bring the knowledge, the context, and the follow-through.</p>
+    <div class="pull-quote">
+      <p>AI handles the parts that usually grind people to a halt: turning rough ideas into clear positioning, writing the offer page, building the outreach language, structuring the pricing. Those tasks used to take weeks. With the right system, they take hours. You're still the one building something real. AI just cuts the time it takes to get there.</p>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="dark-section" id="how-it-works">
+    <div class="section">
+      <span class="section-label">How It Works</span>
+      <h2 class="section-heading">How It Works</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">I.</div>
+          <div>
+            <div class="step-title">Define What You're Actually Selling</div>
+            <div class="step-desc">Start with the First Offer Blueprint. It's a free, guided process that walks you through what to offer, who it's for, and what to charge. Most people finish it in under two hours and walk away with their offer defined on paper for the first time.</div>
+          </div>
         </div>
-      </div>
-      <div class="step">
-        <div class="step-num">II.</div>
-        <div class="step-content">
-          <div class="step-title">Design</div>
-          <div class="step-desc">We build a roadmap. The highest-leverage fixes first. What to automate, what to systemize, what to hand off — in the right order.</div>
+        <div class="step">
+          <div class="step-num">II.</div>
+          <div>
+            <div class="step-title">Build It Out With AI</div>
+            <div class="step-desc">Launch Ready is the full build. You take that defined offer and — step by step, with AI doing the drafting and structuring — you build everything you need to sell it: offer page copy, positioning, pricing, outreach messages, and a 30-day launch plan.</div>
+          </div>
         </div>
-      </div>
-      <div class="step">
-        <div class="step-num">III.</div>
-        <div class="step-content">
-          <div class="step-title">Build and Install</div>
-          <div class="step-desc">We implement. Workflows, automations, communication systems, follow-up sequences. From fragile to functional in 60 to 90 days.</div>
+        <div class="step">
+          <div class="step-num">III.</div>
+          <div>
+            <div class="step-title">Get It in Front of People</div>
+            <div class="step-desc">A launch that stays in a Google Doc isn't a launch. The final stage of Launch Ready walks you through your first-sale strategy — specific, concrete, and built around your offer and your audience.</div>
+          </div>
         </div>
-      </div>
-      <div class="step">
-        <div class="step-num">IV.</div>
-        <div class="step-content">
-          <div class="step-title">Sustain</div>
-          <div class="step-desc">Ongoing operational management so the system keeps working as your organization grows.</div>
+        <div class="step">
+          <div class="step-num">IV.</div>
+          <div>
+            <div class="step-title">Launch. Adjust. Keep Going.</div>
+            <div class="step-desc">Your first offer doesn't have to be perfect. It has to exist. Once you've launched, you have something real to learn from — real feedback, real conversations, real signal. That's worth more than six more months of planning.</div>
+          </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <div class="problem-bg">
-    <section>
-      <p class="section-label">Who We Serve</p>
-      <h2 class="section-heading">Serious operators building something that matters.</h2>
-      <div class="serve-grid">
-        <div class="serve-item">
-          <div class="serve-title">Small Businesses</div>
-          <div class="serve-desc">Owners who are working too hard to run their own business and know something needs to change.</div>
-        </div>
-        <div class="serve-item">
-          <div class="serve-title">Churches and Ministries</div>
-          <div class="serve-desc">Leaders carrying administrative weight that should be carried by a system.</div>
-        </div>
-        <div class="serve-item">
-          <div class="serve-title">Agencies and Firms</div>
-          <div class="serve-desc">Professional service organizations where operations are the difference between scale and chaos.</div>
-        </div>
-        <div class="serve-item">
-          <div class="serve-title">Nonprofits</div>
-          <div class="serve-desc">Mission-driven organizations that cannot afford to lose time, money, or momentum to bad systems.</div>
-        </div>
+  <!-- BLUEPRINT SECTION -->
+  <div class="section" id="blueprint">
+    <span class="section-label">Start Here</span>
+    <h2 class="section-heading">Start Here. It's Free. It Does Real Work.</h2>
+    <h3 style="font-family: var(--serif); font-size: 22px; color: var(--accent); margin-bottom: 20px; font-weight: 400;">The First Offer Blueprint</h3>
+    <p class="section-body">If you're not sure what you'd even sell — or you have a rough idea but it's never turned into anything concrete — this is where you start.</p>
+    <p class="section-body">The First Offer Blueprint is a free, structured guide that walks you through defining your first sellable offer from scratch. It's not a motivational PDF. It's a step-by-step process that produces one specific output: a clear, defined offer you could show someone today.</p>
+    <p class="section-body">By the time you finish it, you'll have a specific offer defined, a clear buyer in mind, a price range established, and your offer positioned in a single sentence.</p>
+    <p class="section-body" style="font-size: 14px;"><strong style="color: var(--white);">Why it's free:</strong> Because the people who most need this are also the people most skeptical of buying something before they've seen real value. The Blueprint proves the process works — before you spend a dollar.</p>
+    <a href="/blueprint.html" class="btn-primary" style="margin-top: 8px;">Get the First Offer Blueprint — Free</a>
+    <p class="form-note" style="margin-top: 16px;">Enter your email. We'll send it immediately.</p>
+  </div>
+
+  <!-- LAUNCH READY PREVIEW -->
+  <div class="dark-section">
+    <div class="section">
+      <span class="section-label">Ready to Build Past the Blueprint?</span>
+      <h2 class="section-heading">Launch Ready</h2>
+      <p class="section-body">The Blueprint gets your offer defined. Launch Ready builds everything else.</p>
+      <p class="section-body">It's a complete, AI-assisted build kit that takes you from a defined offer to fully launch-ready — with a sales page, positioning, outreach scripts, pricing rationale, and a 30-day plan to make your first sale.</p>
+      <p class="section-body">Most people who finish Launch Ready walk away with something they couldn't have put together in months of solo effort — in one to two focused weeks.</p>
+      <div class="offer-card">
+        <div class="offer-price">$97</div>
+        <div class="offer-title">Launch Ready</div>
+        <div class="offer-desc">No subscription. No upsell required. One clear path to launch.</div>
+        <a href="/launch-ready.html" class="btn-primary">See What's Inside Launch Ready →</a>
       </div>
-    </section>
+    </div>
   </div>
 
-  <div class="cta-section" id="audit">
-    <p class="section-label">Get Started</p>
-    <h2 class="section-heading">Start with a free 15-minute Operations Audit.</h2>
-    <p class="section-body">No sales pitch. We look at how your operation runs, identify where you are losing time and money, and tell you honestly what we would do about it.</p>
-    <a href="mailto:jeff@solomonapex.com" class="btn-primary">Book Your Audit</a>
+  <!-- CREDIBILITY -->
+  <div class="section">
+    <span class="section-label">Why You Should Take This Seriously</span>
+    <h2 class="section-heading">Built by Someone Who's Done the Work</h2>
+    <p class="section-body">Solomon Apex was built by Jeff Kline — not a startup founder who turned a side hustle into a course about side hustles.</p>
+    <p class="section-body">Jeff spent 15 years inside some of the most demanding brand and operations environments in the country — running large-scale event programs for Adobe, Cisco, Microsoft, and Oracle; managing a 41-property national rebrand; and advising on brand strategy for clients including DHL, UPS, Boeing, and NOAA.</p>
+    <p class="section-body">Before Solomon Apex, Jeff ran a coaching program called Walk On Water — built to help aspiring entrepreneurs go from idea to launch. Several students built real businesses from it. Some still operate today. But the model depended on Jeff's time, and it wasn't scalable.</p>
+    <p class="section-body">Solomon Apex is the scalable version: the same frameworks, the same process, with AI doing the work that previously required hours of one-on-one consultation. The approach is proven. The delivery is now systematic.</p>
+    <p class="section-body" style="font-size: 14px; color: var(--gray-3);">This system is new. We're not going to fabricate testimonials to make it look otherwise. What we can tell you is that the frameworks it's built on are not new — and the people who work through this process will have results worth pointing to before long.</p>
+    <a href="/about.html" class="btn-ghost" style="margin-top: 8px;">Read more about Solomon and Jeff →</a>
   </div>
 
+  <!-- FINAL CTA -->
+  <div class="cta-section">
+    <span class="section-label">If You've Been Saying "I'll Start Something" for More Than Six Months</span>
+    <h2 class="section-heading">That's Your Answer.</h2>
+    <p class="section-body">Not because you're lazy. Not because you don't care. Because you haven't had a clear, structured, practical way to do it. Now you do.</p>
+    <p class="section-body">The First Offer Blueprint takes under two hours. You'll end up with something you've been trying to figure out for months — a clear, defined offer you can actually build and sell. It's free. Start there.</p>
+    <a href="/blueprint.html" class="btn-primary">Get the First Offer Blueprint — Free</a>
+    <p style="margin-top: 20px; font-size: 14px; color: var(--gray-4);">Or if you're ready to build now: <a href="/launch-ready.html" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(200,169,106,0.4);">See Launch Ready ($97) →</a></p>
+  </div>
+
+  <!-- FOOTER -->
   <footer>
-    <div class="footer-logo">Solomon <span>Apex</span></div>
-    <div class="footer-copy">2026 Solomon Apex. All rights reserved.</div>
+    <div class="footer-brand">
+      <div class="logo">Solomon <span>Apex</span></div>
+      <div class="tagline">A Real Path to Launch</div>
+      <div class="desc">Built for capable people who are ready to launch something real.</div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a href="/">Home</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="/launch-ready.html">Launch Ready</a>
+      <a href="/about.html">About</a>
+    </div>
+    <div class="footer-col">
+      <h4>Start Here</h4>
+      <a href="/blueprint.html">Get the First Offer Blueprint — Free</a>
+      <a href="/launch-ready.html">Launch Ready — $97</a>
+      <a href="mailto:hello@solomonapex.com">hello@solomonapex.com</a>
+    </div>
   </footer>
+  <div class="footer-bottom">
+    <p>© 2026 Solomon Apex. A product of 5th &amp; Lake LLC. All rights reserved.</p>
+    <div>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms of Service</a>
+    </div>
+  </div>
 
 </body>
 </html>
