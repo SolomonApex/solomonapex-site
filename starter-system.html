@@ -1,0 +1,1971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Solomon Apex Starter System</title>
+  <meta name="description" content="The complete Solomon Apex Starter System — six components to go from zero to first sale.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <style>
+    /* ============================================
+       RESET & BASE
+    ============================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0A0F1E;
+      --navy-mid: #111827;
+      --navy-light: #1a2235;
+      --gold: #C8A96A;
+      --gold-light: #dfc08a;
+      --white: #FFFFFF;
+      --gray-1: #f7f7f5;
+      --gray-2: #e8e4de;
+      --gray-3: #999;
+      --gray-4: #555;
+      --text: #1a1a1a;
+      --border: rgba(200, 169, 106, 0.25);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--white);
+    }
+
+    /* ============================================
+       TYPOGRAPHY
+    ============================================ */
+    h1, h2, h3, h4 {
+      font-family: Georgia, 'Times New Roman', serif;
+      line-height: 1.25;
+    }
+
+    h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+    h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); margin-bottom: 1rem; }
+    h3 { font-size: clamp(1.15rem, 2.5vw, 1.5rem); margin-bottom: 0.75rem; }
+    h4 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+
+    p { margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    strong { font-weight: 700; }
+    em { font-style: italic; }
+
+    /* ============================================
+       LAYOUT UTILITIES
+    ============================================ */
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .container-wide {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+
+    /* ============================================
+       NAV
+    ============================================ */
+    nav {
+      background: var(--navy);
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: Georgia, serif;
+      font-size: 1.1rem;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a { color: var(--gray-3); font-size: 0.9rem; text-decoration: none; }
+    .nav-links a:hover { color: var(--white); }
+
+    /* ============================================
+       COVER PAGE
+    ============================================ */
+    .cover {
+      background: var(--navy);
+      color: var(--white);
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at 50% 30%, rgba(200,169,106,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cover-inner { position: relative; z-index: 1; }
+
+    .cover-eyebrow {
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+      font-family: Arial, sans-serif;
+    }
+
+    .cover h1 {
+      color: var(--gold);
+      margin-bottom: 20px;
+      max-width: 780px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cover-sub {
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.75);
+      max-width: 520px;
+      margin: 0 auto 32px;
+      font-family: Georgia, serif;
+      font-style: italic;
+    }
+
+    .cover-byline {
+      font-size: 0.9rem;
+      color: var(--gray-3);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-family: Arial, sans-serif;
+    }
+
+    .cover-divider {
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+      margin: 28px auto;
+      opacity: 0.6;
+    }
+
+    /* ============================================
+       TABLE OF CONTENTS
+    ============================================ */
+    .toc-section {
+      background: var(--gray-1);
+      padding: 72px 24px;
+      border-bottom: 1px solid var(--gray-2);
+    }
+
+    .toc-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+      font-family: Arial, sans-serif;
+    }
+
+    .toc-section h2 {
+      color: var(--navy);
+      margin-bottom: 40px;
+    }
+
+    .toc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .toc-item {
+      background: var(--white);
+      border: 1px solid var(--gray-2);
+      border-left: 3px solid var(--gold);
+      padding: 20px 24px;
+      text-decoration: none;
+      display: block;
+      transition: box-shadow 0.2s, transform 0.2s;
+      border-radius: 2px;
+    }
+
+    .toc-item:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+      text-decoration: none;
+    }
+
+    .toc-num {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+      font-family: Arial, sans-serif;
+    }
+
+    .toc-title {
+      font-family: Georgia, serif;
+      font-size: 1.05rem;
+      color: var(--navy);
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+
+    .toc-desc {
+      font-size: 0.82rem;
+      color: var(--gray-4);
+      line-height: 1.5;
+    }
+
+    /* ============================================
+       COMPONENT SECTIONS
+    ============================================ */
+    .component {
+      padding: 80px 24px;
+      border-bottom: 1px solid var(--gray-2);
+    }
+
+    .component:nth-child(even) {
+      background: var(--white);
+    }
+
+    .component:nth-child(odd) {
+      background: var(--gray-1);
+    }
+
+    .component-header {
+      margin-bottom: 48px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .component-num {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+      font-family: Arial, sans-serif;
+    }
+
+    .component-header h2 {
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .component-header .subtitle {
+      font-style: italic;
+      color: var(--gray-4);
+      font-family: Georgia, serif;
+      font-size: 1rem;
+    }
+
+    /* ============================================
+       CONTENT ELEMENTS
+    ============================================ */
+    .content h3 {
+      color: var(--navy);
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--gray-2);
+    }
+
+    .content h3:first-child {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+
+    .content h4 {
+      color: var(--navy-mid);
+      margin-top: 1.5rem;
+    }
+
+    .content p {
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .content ul, .content ol {
+      margin: 0.75rem 0 1.25rem 1.5rem;
+    }
+
+    .content li {
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .content li strong {
+      color: var(--navy);
+    }
+
+    /* Prompt blocks */
+    .prompt-block {
+      background: var(--navy);
+      border-left: 4px solid var(--gold);
+      border-radius: 4px;
+      padding: 24px 28px;
+      margin: 1.5rem 0;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .prompt-block .prompt-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+    }
+
+    .prompt-block p {
+      color: rgba(255,255,255,0.85);
+      font-size: 0.93rem;
+      margin-bottom: 0;
+      font-style: italic;
+    }
+
+    /* Tables */
+    .content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+    }
+
+    .content th {
+      background: var(--navy);
+      color: var(--gold);
+      padding: 12px 16px;
+      text-align: left;
+      font-family: Arial, sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .content td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--gray-2);
+      color: var(--text);
+      vertical-align: top;
+    }
+
+    .content tr:last-child td { border-bottom: none; }
+    .content tr:nth-child(even) td { background: rgba(0,0,0,0.02); }
+
+    /* Blockquote style for prominent text */
+    .content blockquote {
+      border-left: 3px solid var(--gold);
+      padding: 12px 24px;
+      margin: 1.5rem 0;
+      background: rgba(200,169,106,0.05);
+      font-style: italic;
+      color: var(--gray-4);
+    }
+
+    /* Fill-in lines */
+    .fill-line {
+      display: inline-block;
+      border-bottom: 1px solid var(--gray-3);
+      min-width: 240px;
+      margin: 0 4px;
+    }
+
+    /* Checklist items */
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--gray-2);
+    }
+
+    .checklist-item:last-child { border-bottom: none; }
+
+    .check-box {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--gold);
+      border-radius: 3px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .checklist-item .item-content { flex: 1; }
+    .checklist-item .item-title {
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .checklist-item .item-desc {
+      font-size: 0.9rem;
+      color: var(--gray-4);
+    }
+
+    /* Path/decision cards */
+    .path-card {
+      background: var(--white);
+      border: 1px solid var(--gray-2);
+      border-top: 4px solid var(--gold);
+      padding: 28px 32px;
+      margin: 1.5rem 0;
+      border-radius: 2px;
+    }
+
+    .path-card h3 {
+      border-top: none !important;
+      padding-top: 0 !important;
+      margin-top: 0 !important;
+      color: var(--navy) !important;
+    }
+
+    /* Section divider within component */
+    .section-break {
+      margin: 3rem 0;
+      border: none;
+      border-top: 2px solid var(--border);
+    }
+
+    /* Quick reference table wrapper */
+    .quick-ref {
+      background: var(--navy);
+      padding: 32px;
+      border-radius: 4px;
+      margin: 2rem 0;
+    }
+
+    .quick-ref h4 {
+      color: var(--gold);
+      font-family: Georgia, serif;
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+    }
+
+    .quick-ref table { margin: 0; }
+    .quick-ref th { background: rgba(255,255,255,0.08); color: var(--gold); }
+    .quick-ref td { color: rgba(255,255,255,0.85); border-bottom-color: rgba(255,255,255,0.1); }
+
+    /* ============================================
+       CLOSING PAGE
+    ============================================ */
+    .closing {
+      background: var(--navy);
+      color: var(--white);
+      padding: 100px 32px;
+      text-align: center;
+    }
+
+    .closing .tagline {
+      font-family: Georgia, serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      color: var(--gold);
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+
+    .closing p {
+      color: rgba(255,255,255,0.7);
+      max-width: 520px;
+      margin: 0 auto 40px;
+      font-size: 1.05rem;
+    }
+
+    .btn-gold {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      padding: 16px 40px;
+      font-family: Arial, sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-gold:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+
+    .closing-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin: 40px auto;
+      opacity: 0.4;
+    }
+
+    .closing-footnote {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.06em;
+    }
+
+    /* ============================================
+       FOOTER
+    ============================================ */
+    footer {
+      background: var(--navy-mid);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 40px 32px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .footer-brand .logo {
+      font-family: Georgia, serif;
+      font-size: 1.1rem;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .footer-brand .logo span { color: var(--gold); }
+    .footer-brand .tagline { font-size: 0.8rem; color: var(--gray-3); }
+
+    .footer-bottom {
+      background: var(--navy);
+      padding: 16px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .footer-bottom p { font-size: 0.78rem; color: var(--gray-3); margin: 0; }
+    .footer-bottom a { font-size: 0.78rem; color: var(--gray-3); margin-left: 16px; }
+    .footer-bottom a:hover { color: var(--white); }
+
+    /* ============================================
+       PRINT STYLES
+    ============================================ */
+    @media print {
+      nav, footer, .footer-bottom { display: none; }
+
+      .cover { min-height: auto; padding: 60px 32px; page-break-after: always; }
+
+      .toc-section { page-break-after: always; }
+
+      .component { page-break-before: always; border: none; padding: 40px 0; }
+
+      .component:nth-child(even), .component:nth-child(odd) { background: white; }
+
+      .prompt-block { background: #f0f0f0; border-left: 4px solid #888; color: #333; }
+      .prompt-block p { color: #333; }
+      .prompt-block .prompt-label { color: #555; }
+
+      .quick-ref { background: #f0f0f0; }
+      .quick-ref th { background: #e0e0e0; color: #333; }
+      .quick-ref td { color: #333; }
+
+      .closing { background: white; color: #333; page-break-before: always; }
+      .closing .tagline { color: #333; }
+      .closing p { color: #555; }
+      .btn-gold { display: none; }
+
+      a { color: #333; }
+      h2, h3, h4 { color: #111; }
+
+      .path-card { break-inside: avoid; }
+    }
+
+    /* ============================================
+       RESPONSIVE
+    ============================================ */
+    @media (max-width: 640px) {
+      nav { padding: 14px 20px; }
+      .nav-links { gap: 16px; }
+      .cover { padding: 60px 20px; }
+      .component { padding: 56px 20px; }
+      .toc-section { padding: 56px 20px; }
+      .toc-grid { grid-template-columns: 1fr; }
+      .quick-ref { padding: 20px; }
+      .content table { font-size: 0.82rem; }
+      .content th, .content td { padding: 10px 12px; }
+      .prompt-block { padding: 18px 20px; }
+      footer { padding: 32px 20px; }
+      .footer-bottom { padding: 14px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="nav-logo">Solomon <span>Apex</span></a>
+    <div class="nav-links">
+      <a href="/thank-you-purchase.html">My Purchase</a>
+      <a href="mailto:support@apexcommandsystems.com">Support</a>
+    </div>
+  </nav>
+
+  <!-- COVER -->
+  <section class="cover" id="top">
+    <div class="cover-inner container">
+      <p class="cover-eyebrow">Solomon Apex&trade; &mdash; Starter System</p>
+      <h1>The Solomon Apex<br>Starter System</h1>
+      <div class="cover-divider"></div>
+      <p class="cover-sub">Six components. One system. The exact map from zero to your first paying customer.</p>
+      <p class="cover-byline">By Jeff Kline &mdash; Solomon Apex&trade;</p>
+    </div>
+  </section>
+
+  <!-- TABLE OF CONTENTS -->
+  <section class="toc-section" id="toc">
+    <div class="container">
+      <p class="toc-label">What's Inside</p>
+      <h2>Six components. Everything you need. Nothing you don't.</h2>
+      <div class="toc-grid">
+        <a href="#component-00" class="toc-item">
+          <div class="toc-num">Component 00</div>
+          <div class="toc-title">Welcome + Navigation Guide</div>
+          <div class="toc-desc">Start here. Learn what you have and exactly where to begin based on where you are right now.</div>
+        </a>
+        <a href="#component-01" class="toc-item">
+          <div class="toc-num">Component 01</div>
+          <div class="toc-title">The Builder's Map</div>
+          <div class="toc-desc">A decision framework that tells you what to build, in what order, with AI prompts at every step.</div>
+        </a>
+        <a href="#component-02" class="toc-item">
+          <div class="toc-num">Component 02</div>
+          <div class="toc-title">The Daily Operating Rhythm</div>
+          <div class="toc-desc">A repeatable daily system for 30-minute, 60-minute, and 2-hour sessions. Built for real life.</div>
+        </a>
+        <a href="#component-03" class="toc-item">
+          <div class="toc-num">Component 03</div>
+          <div class="toc-title">The Offer Builder</div>
+          <div class="toc-desc">Define what you sell, who you sell it to, and how to say it. Walk away with a one-page offer doc.</div>
+        </a>
+        <a href="#component-04" class="toc-item">
+          <div class="toc-num">Component 04</div>
+          <div class="toc-title">The First Sale Playbook</div>
+          <div class="toc-desc">How to get your first paying customer without a website, ads, or an audience.</div>
+        </a>
+        <a href="#component-05" class="toc-item">
+          <div class="toc-num">Component 05</div>
+          <div class="toc-title">The Foundation Checklist</div>
+          <div class="toc-desc">Every tool and account you actually need, most of them free, in the exact order to set them up.</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       COMPONENT 00: WELCOME
+  ============================================ -->
+  <section class="component" id="component-00">
+    <div class="container">
+      <div class="component-header">
+        <p class="component-num">Component 00</p>
+        <h2>Welcome to the Solomon Apex Starter System</h2>
+        <p class="subtitle">Read this first. Orients you and tells you exactly where to begin.</p>
+      </div>
+
+      <div class="content">
+        <p>You did the right thing. Most people spend months watching videos, reading threads, and "getting ready" and never start. You bought a system and that means you're ready to move. What you have in your hands is the exact decision-making framework used to go from zero to a first paying customer. No audience. No product. No business name. It's not theory. It's the map.</p>
+
+        <p>This system won't build your business for you. That's your job. What it will do is remove the question marks. You'll know what to build, who to sell it to, how to reach them, and exactly what to say. Every step has a built-in AI prompt so you're never staring at a blank page. You bring 30 minutes a day. The system brings the map.</p>
+
+        <hr>
+
+        <h3>What You Just Bought</h3>
+        <p><strong>Five components. One system.</strong></p>
+
+        <div class="path-card">
+          <h3>The Builder's Map (Component 1)</h3>
+          <p>A visual decision framework. You answer a few honest questions and it tells you exactly which path to take -- service-based or system-based -- and the five steps to move forward on that path. Includes AI prompts for every decision point.</p>
+        </div>
+
+        <div class="path-card">
+          <h3>The Daily Operating Rhythm (Component 2)</h3>
+          <p>A repeatable daily structure for 30-minute, 60-minute, and 2-hour sessions. Built for real life. Not for people with empty schedules. Includes a weekly review process that takes 20 minutes and tells you everything you need to know.</p>
+        </div>
+
+        <div class="path-card">
+          <h3>The Offer Builder (Component 3)</h3>
+          <p>A five-step process for defining exactly what you sell, who you sell it to, and how to say it in plain language. You'll leave with a one-sentence offer that actually works, a clear buyer definition, a price that makes sense, and a one-page offer document.</p>
+        </div>
+
+        <div class="path-card">
+          <h3>The First Sale Playbook (Component 4)</h3>
+          <p>How to get your first paying customer without a website, without ads, and without a single follower. Includes outreach templates, conversation guides, and the one question that closes more sales than any pitch.</p>
+        </div>
+
+        <div class="path-card">
+          <h3>The Foundation Checklist (Component 5)</h3>
+          <p>Every tool and account you actually need -- most of them free -- and the exact order to set them up. Includes a clear list of what to skip until you have paying customers.</p>
+        </div>
+
+        <hr>
+
+        <h3>Where to Start</h3>
+
+        <p><strong>If you don't know what business to build:</strong> Start with Component 1 -- The Builder's Map. Follow it all the way through before touching anything else.</p>
+
+        <p><strong>If you know what you want to offer but aren't sure how to package it:</strong> Start with Component 3 -- The Offer Builder. Then come back to Component 1 to validate your path.</p>
+
+        <p><strong>If you have an offer but no customers yet:</strong> Start with Component 4 -- The First Sale Playbook. That's where the money is right now.</p>
+
+        <p><strong>If you're not sure where you stand:</strong> Start with Component 5 -- The Foundation Checklist. It takes 20 minutes and gives you a clear picture of what's in place and what's missing.</p>
+
+        <p>Not sure? Start with Component 1. It tells you where to go next.</p>
+
+        <hr>
+
+        <h3>How to Use AI With This System</h3>
+
+        <p>You don't need a paid AI subscription. Open ChatGPT (free at <a href="https://chat.openai.com" target="_blank">chat.openai.com</a>) or Claude (free at <a href="https://claude.ai" target="_blank">claude.ai</a>). When you see a prompt block in this system -- it's labeled clearly -- copy it, paste it into your AI tool, and read the output carefully. The AI drafts. You decide. Every decision is yours. The prompts save you 80% of the thinking time. The 20% that's left is the part only you can do.</p>
+
+        <hr>
+
+        <h3>The Promise</h3>
+
+        <p>If you follow this system for 30 days -- one component at a time, in order, without skipping -- here is what you will have:</p>
+
+        <ul>
+          <li>A specific offer that you can describe in one sentence</li>
+          <li>A clear picture of exactly who you're selling to</li>
+          <li>A warm list of real people who might buy</li>
+          <li>At least one real conversation with a potential customer</li>
+          <li>A foundation that costs almost nothing and can grow into something real</li>
+        </ul>
+
+        <p>That's not a guarantee. That's what the system is designed to produce when you actually use it. The doing is on you.</p>
+
+        <hr>
+
+        <h3>One Rule</h3>
+
+        <p><strong>Don't skip ahead.</strong></p>
+
+        <p>Each component builds on the last. Jumping to the First Sale Playbook before you've built your offer is like trying to sell something you can't describe. Follow the sequence. Trust the system. Thirty days from now you'll understand why the order matters.</p>
+
+        <p>Let's go.</p>
+
+        <p style="font-size: 0.85rem; color: var(--gray-3); margin-top: 2rem;"><em>Solomon Apex Starter System -- v1.0 -- solomonapex.com</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       COMPONENT 01: BUILDER'S MAP
+  ============================================ -->
+  <section class="component" id="component-01">
+    <div class="container">
+      <div class="component-header">
+        <p class="component-num">Component 01</p>
+        <h2>The Builder's Map</h2>
+        <p class="subtitle">A Decision Framework for Starting Your First Business</p>
+      </div>
+
+      <div class="content">
+
+        <h3>START HERE: What Do You Have?</h3>
+
+        <p>Rate yourself honestly from 1 to 5. No inflating. No sandbagging.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Resource</th>
+              <th>Your Rating (1-5)</th>
+              <th>What it Means</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Time</strong></td>
+              <td><span class="fill-line">&nbsp;</span></td>
+              <td>1 = under 30 min/day. 3 = 1 hour/day. 5 = 4+ hours/day</td>
+            </tr>
+            <tr>
+              <td><strong>Skills</strong></td>
+              <td><span class="fill-line">&nbsp;</span></td>
+              <td>1 = no marketable skills yet. 3 = one solid skill. 5 = multiple skills others pay for</td>
+            </tr>
+            <tr>
+              <td><strong>Network</strong></td>
+              <td><span class="fill-line">&nbsp;</span></td>
+              <td>1 = know almost no one in business. 3 = 50+ working adults who know you. 5 = active relationships with decision-makers</td>
+            </tr>
+            <tr>
+              <td><strong>Money</strong></td>
+              <td><span class="fill-line">&nbsp;</span></td>
+              <td>1 = no startup capital. 3 = $500-1,000 available. 5 = $5,000+ available</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p><strong>Your totals don't determine your ceiling. They determine your starting point.</strong></p>
+        <p>A score of 4/20 is fine. It means you build lean, move slowly at first, and prove things before spending anything.</p>
+
+        <div class="prompt-block">
+          <p class="prompt-label">AI Prompt -- Use This Now</p>
+          <p>Open ChatGPT or Claude (free versions work fine). Paste this:</p>
+          <p>"I'm starting a business from scratch. Here are my honest ratings: Time [your score]/5, Skills [your score]/5, Network [your score]/5, Money [your score]/5. Based on these constraints, what are the most realistic business types for me to start? Focus on options that match my actual resources, not ideal conditions. Give me 3 specific options with a one-sentence explanation of why each fits my situation."</p>
+        </div>
+
+        <hr class="section-break">
+
+        <h3>DECISION 1: Do You Have a Skill Someone Would Pay For?</h3>
+
+        <p>Ask yourself this exact question: <strong>Has anyone ever paid for this skill -- or would they pay someone to do what I can do?</strong></p>
+
+        <p><strong>Examples of YES:</strong></p>
+        <ul>
+          <li>You've done bookkeeping, even as a hobby</li>
+          <li>You're a great writer and people ask for your help</li>
+          <li>You know how to build websites, even basic ones</li>
+          <li>You've run events, managed projects, coached athletes</li>
+          <li>You know a specific industry inside and out</li>
+          <li>You're unusually good at organizing, planning, or systems</li>
+        </ul>
+
+        <p><strong>Examples of NO:</strong></p>
+        <ul>
+          <li>You have general life skills but nothing specific</li>
+          <li>You're still learning the skill</li>
+          <li>The skill you have isn't something others struggle with</li>
+          <li>You want to build something product-based</li>
+        </ul>
+
+        <p><strong>If YES:</strong> Go to Offer Path A below.</p>
+        <p><strong>If NO:</strong> Go to Offer Path B below.</p>
+        <p><strong>If you're not sure:</strong> That's usually a soft yes. List your three strongest skills and pick the one that other people have actually commented on or asked you about. Go to Path A.</p>
+
+        <div class="prompt-block">
+          <p class="prompt-label">AI Prompt -- Use This Now</p>
+          <p>"Help me figure out if I have a marketable skill. Here's what I'm good at or have experience in: [list 3-5 things]. For each one, tell me: (1) who typically pays for this, (2) what they pay, and (3) how hard it would be for me to land my first paying client with this skill in the next 30 days. Be honest and specific."</p>
+        </div>
+
+        <hr class="section-break">
+
+        <div class="path-card">
+          <h3>OFFER PATH A: Service-Based Business</h3>
+          <p><em>You have a skill. Now you build an offer around it.</em></p>
+
+          <h4>Step 1: Name Your Skill Precisely</h4>
+          <p>Not "marketing." Not "design." Get specific.</p>
+          <ul>
+            <li>Good: "Email marketing for local service businesses"</li>
+            <li>Good: "Bookkeeping for solo freelancers under $100K/year"</li>
+            <li>Too broad: "Social media"</li>
+            <li>Too broad: "Business consulting"</li>
+          </ul>
+          <p>Write your specific skill in one line: <span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+
+          <div class="prompt-block">
+            <p class="prompt-label">AI Prompt</p>
+            <p>"I have experience in [your skill]. Help me get specific. Give me 5 more precise versions of this skill -- each one targeting a specific type of person or business who would pay for it. Make them concrete, not generic."</p>
+          </div>
+
+          <h4>Step 2: Identify Who Needs It Most</h4>
+          <p>Not everyone. Someone specific. Ask: Who is in pain right now because they don't have this skill and can't do it themselves?</p>
+          <p>Write the type of person: <span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+
+          <div class="prompt-block">
+            <p class="prompt-label">AI Prompt</p>
+            <p>"I offer [your specific skill]. Who are the top 3 types of people or businesses that need this most and are most likely to pay for help? For each type, tell me: (1) their main pain point, (2) why they'd hire someone instead of doing it themselves, and (3) where I'd find them in real life or online."</p>
+          </div>
+
+          <h4>Step 3: Define Your First Offer</h4>
+          <p>Don't build a full service menu. Build one offer. Use this formula:</p>
+          <p><strong>"I help [specific person] [do specific thing] so they can [get specific result]."</strong></p>
+          <p>Example: "I help local restaurant owners post consistent social media content so they can attract new customers without spending time on it themselves."</p>
+          <p>Write yours: <span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+
+          <div class="prompt-block">
+            <p class="prompt-label">AI Prompt</p>
+            <p>"Here's my draft offer: [paste your sentence]. Make it sharper. Give me 3 improved versions. Each one should be clear enough that someone can read it in 5 seconds and immediately know if it's for them. No jargon. No fluff."</p>
+          </div>
+
+          <h4>Step 4: Set a Simple Price</h4>
+          <p>For your first service offer, charge based on the outcome -- not the hours. Ask yourself: What is it worth to them if this problem goes away?</p>
+          <p>Starting price range for solo service providers:</p>
+          <ul>
+            <li>One-time project: $200-$1,500</li>
+            <li>Monthly retainer: $300-$1,500/month</li>
+            <li>One-time consulting call: $100-$300</li>
+          </ul>
+          <p>Write your first offer price: $<span class="fill-line" style="min-width: 80px;">&nbsp;</span></p>
+          <p><em>The test: Would you pay this price for this outcome if you were them? If yes, move on.</em></p>
+
+          <h4>Step 5: Find Your First 5 Conversations</h4>
+          <p>Not 50. Five. Write down 5 real people you know who fit the description of your target buyer. Not strangers. People who already know you and trust you.</p>
+          <ol>
+            <li><span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+            <li><span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+            <li><span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+            <li><span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+            <li><span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+          </ol>
+          <p>Before you reach out, go to Component 4 -- The First Sale Playbook. It tells you exactly what to say.</p>
+        </div>
+
+        <div class="path-card">
+          <h3>OFFER PATH B: System-Based Business</h3>
+          <p><em>No specific paid skill yet. You'll build something to solve a problem.</em></p>
+
+          <h4>Step 1: Find the Problem First</h4>
+          <p>Don't start with the product. Start with the problem. Ask: What do people around me complain about regularly? What do they pay to solve but still aren't satisfied? What takes too long or feels too hard for a specific group of people?</p>
+          <p>Write 3 problems you've personally observed:</p>
+          <ol>
+            <li><span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+            <li><span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+            <li><span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+          </ol>
+
+          <div class="prompt-block">
+            <p class="prompt-label">AI Prompt</p>
+            <p>"I want to build a product or system to solve a problem. Here are 3 problems I've personally observed: [list them]. For each one, tell me: (1) who experiences this problem, (2) how much they'd typically pay to solve it, (3) whether this is a real market or just a niche frustration. Help me figure out which of these is most worth building for."</p>
+          </div>
+
+          <h4>Step 2: Validate the Problem Is Real</h4>
+          <p><strong>Validation Gate:</strong></p>
+          <ol>
+            <li>Have you seen at least 3 real people complain about this problem in the last 6 months?</li>
+            <li>Would someone pay money (not just say "that's a great idea") to have this solved?</li>
+            <li>Can you build or document the solution using what you already know?</li>
+          </ol>
+          <p>If you answer NO to any of these, pick a different problem. If you answer YES to all three, keep going.</p>
+
+          <h4>Step 3: Design the Simplest Version</h4>
+          <p>What is the smallest, simplest thing you could create that solves this problem? Not a course. Not a platform. Not an app. Maybe it's a checklist, a template pack, a step-by-step guide, a decision framework, or a swipe file.</p>
+          <p>Write the simplest version of your solution: <span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+
+          <div class="prompt-block">
+            <p class="prompt-label">AI Prompt</p>
+            <p>"I want to build a simple paid product to solve this problem: [describe the problem] for [describe who has it]. What is the simplest possible product I could build to solve this -- something I could create in 1-2 weeks without technical skills or a big budget? Give me 3 options, ranging from simplest to slightly more complex."</p>
+          </div>
+
+          <h4>Step 4: Build Before You Launch</h4>
+          <p>Build the minimum version first. Then sell it. Minimum means: it solves the problem clearly. Not perfect. Not comprehensive. A 5-page PDF that actually works beats a 50-page course that's almost done.</p>
+          <p>Set a build deadline: I will finish the minimum version by: <span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+
+          <h4>Step 5: Sell It Before You Announce It</h4>
+          <p>Before you post anything publicly, go to the 5 people who you think have this problem and offer it to them directly. Write 3 people who have the problem you're solving:</p>
+          <ol>
+            <li><span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+            <li><span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+            <li><span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+          </ol>
+          <p>Then go to Component 4 -- The First Sale Playbook.</p>
+        </div>
+
+        <hr class="section-break">
+
+        <h3>VALIDATION GATE: Answer These Before Spending Anything</h3>
+
+        <p>No matter which path you're on, stop here before you build or spend.</p>
+
+        <p><strong>Question 1: Is there a real, specific person who would pay for this today?</strong><br>
+        Not "there are probably people out there." A real person, with a name, who has this problem.<br>
+        Name one: <span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+
+        <p><strong>Question 2: Do you know where to find more people like them?</strong><br>
+        Online, in person, in a community, at an event. Somewhere specific.<br>
+        Where: <span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+
+        <p><strong>Question 3: Does your offer describe a clear outcome -- not just a feature?</strong><br>
+        Bad: "I do social media management"<br>
+        Good: "I help restaurant owners post 5 times a week and grow their local following without spending time on it themselves"<br>
+        Your offer: <span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+
+        <p>If you can't answer all three clearly, don't move forward yet. Go back and get sharper.</p>
+
+        <div class="prompt-block">
+          <p class="prompt-label">AI Prompt</p>
+          <p>"I'm about to start building and selling [your offer]. Challenge me. Ask me the hard questions I might not be thinking about. What assumptions am I making that could be wrong? What should I validate before I build anything? Be direct."</p>
+        </div>
+
+        <hr class="section-break">
+
+        <h3>FIRST SALE TARGET</h3>
+
+        <p>Before you build a website. Before you design anything. Before you buy tools.</p>
+        <p><strong>Your only goal is this: One real person gives you money.</strong></p>
+        <p>That's it. One sale. Even $50. Even for a draft version. Even for a pilot rate. That first dollar tells you something no amount of planning can: this is real.</p>
+
+        <p><strong>I will sell</strong> <span class="fill-line" style="min-width: 120px;">&nbsp;</span> <strong>to</strong> <span class="fill-line" style="min-width: 120px;">&nbsp;</span> <strong>for $</strong><span class="fill-line" style="min-width: 60px;">&nbsp;</span> <strong>by</strong> <span class="fill-line" style="min-width: 100px;">&nbsp;</span></p>
+
+        <p>Write it down. Put it somewhere you'll see it. Then go to Component 4 -- The First Sale Playbook.</p>
+
+        <div class="quick-ref">
+          <h4>Quick Reference: Which Component Next?</h4>
+          <table>
+            <thead>
+              <tr><th>Your Situation</th><th>Go To</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>I know my path but need to define my offer</td><td>Component 3 -- Offer Builder</td></tr>
+              <tr><td>I'm ready to find customers</td><td>Component 4 -- First Sale Playbook</td></tr>
+              <tr><td>I need a daily system to keep moving</td><td>Component 2 -- Daily Rhythm</td></tr>
+              <tr><td>I need to set up my tools</td><td>Component 5 -- Foundation Checklist</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p style="font-size: 0.85rem; color: var(--gray-3); margin-top: 2rem;"><em>Solomon Apex Starter System -- Component 1 of 5</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       COMPONENT 02: DAILY RHYTHM
+  ============================================ -->
+  <section class="component" id="component-02">
+    <div class="container">
+      <div class="component-header">
+        <p class="component-num">Component 02</p>
+        <h2>The Daily Operating Rhythm</h2>
+        <p class="subtitle">A Repeatable System for Building a Business in the Time You Actually Have</p>
+      </div>
+
+      <div class="content">
+
+        <h3>The One Rule Before You Start</h3>
+
+        <p>Pick your session length before you sit down. Not after. Knowing you have 30 minutes forces different decisions than knowing you have two hours. Decide first. Then open this document.</p>
+
+        <hr class="section-break">
+
+        <h3>The 30-Minute Session</h3>
+        <p><em>For days when life is full</em></p>
+
+        <p>This is not a consolation session. Thirty focused minutes beats two distracted hours. When this is all you have, use every minute.</p>
+
+        <h4>Minutes 1-5: Orient</h4>
+        <p>Don't open email. Don't check anything. Just answer these two questions out loud or in writing:</p>
+        <ol>
+          <li>What happened yesterday? (One sentence. What did you actually do?)</li>
+          <li>What is the one thing that moves my business forward today?</li>
+        </ol>
+        <p>The "one thing" is not "work on my business." It's specific. Examples: write the first draft of my offer sentence, text Marcus about whether he'd be interested in what I'm building, fill out the buyer definition in the Offer Builder, add 10 people to my warm list.</p>
+        <p>Write your one thing here before the session starts: <span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+
+        <h4>Minutes 5-20: Do the One Thing</h4>
+        <p>No context switching. No browsing. No researching "just to see." Do the one thing. That's it. If you finish early, don't start something new. Review and improve what you just did.</p>
+
+        <h4>Minutes 20-28: AI Draft</h4>
+        <p>Use these 8 minutes to set up tomorrow's task with AI. You won't have time to do this tomorrow. Do it now.</p>
+        <p>Open ChatGPT or Claude (free). Identify what you need to get done next. Paste the appropriate prompt below.</p>
+
+        <div class="prompt-block">
+          <p class="prompt-label">If tomorrow's task is about your offer</p>
+          <p>"I'm building a [service/product] offer for [type of person]. Tomorrow I need to [describe the task]. Give me a first draft I can react to, improve, and make my own. Be specific. Don't be generic. Write it like a real human who has done this before."</p>
+        </div>
+
+        <div class="prompt-block">
+          <p class="prompt-label">If tomorrow's task is about outreach</p>
+          <p>"I need to reach out to [type of person] about [what you're offering]. Tomorrow I'm going to [send a text/DM/email]. Write me 2 versions: one for someone who knows me well, one for someone I haven't talked to in a while. Make it warm, direct, and non-salesy. No hype."</p>
+        </div>
+
+        <div class="prompt-block">
+          <p class="prompt-label">If tomorrow's task is about building something</p>
+          <p>"I'm working on [what you're building]. Tomorrow I need to make progress on [specific part]. Give me a step-by-step breakdown of exactly what to do in 30 minutes. Be specific enough that I can follow it without thinking too hard."</p>
+        </div>
+
+        <p>Save the AI output. You'll use it tomorrow.</p>
+
+        <h4>Minutes 28-30: Set Up Tomorrow</h4>
+        <p>Write down tomorrow's one thing. Not a list. One thing.</p>
+        <p>Tomorrow I will: <span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+        <p>Close everything. You're done. That session counted.</p>
+
+        <hr class="section-break">
+
+        <h3>The 60-Minute Session</h3>
+        <p><em>Two tasks. More output. Same discipline.</em></p>
+
+        <h4>Minutes 1-5: Orient</h4>
+        <p>Same as above. Two questions: What happened yesterday? What are the two things I'm doing today? Write both tasks. Order them. The harder one goes first.</p>
+        <p>Task 1 (do this first): <span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+        <p>Task 2: <span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+
+        <h4>Minutes 5-25: Do Task 1</h4>
+        <p>Same rule. No switching. If it's a conversation or outreach task, it might take less than 20 minutes. That's fine. Move to review and improve.</p>
+
+        <h4>Minutes 25-45: Do Task 2</h4>
+        <p>Fresh focus. Same approach.</p>
+
+        <h4>Minutes 45-57: AI for Tomorrow</h4>
+        <p>You have 12 minutes now. Use it to do two things. First: Get AI output for tomorrow's priority task (use the prompts from the 30-minute session above). Second: Use this prompt to review today's work:</p>
+
+        <div class="prompt-block">
+          <p class="prompt-label">Daily Review Prompt</p>
+          <p>"Here's what I worked on today: [describe what you did]. I'm building [describe your business]. Based on what I did, what's the most important thing I should focus on tomorrow? What am I potentially missing or avoiding that I should address soon?"</p>
+        </div>
+
+        <p>Read the output. Don't just copy it. React to it. Cross out what's wrong. Keep what's useful.</p>
+
+        <h4>One 60-minute bonus use -- The Offer Sprint</h4>
+        <p>If you're stuck on your offer definition, use an entire 60-minute session as an offer sprint.</p>
+        <ul>
+          <li>Minutes 1-10: Write the worst possible version of your offer sentence. No judgment. Just get something out.</li>
+          <li>Minutes 10-20: Paste it into AI with the prompt below.</li>
+          <li>Minutes 20-40: Pick the best version. Edit it yourself until it sounds like you.</li>
+          <li>Minutes 40-55: Read it out loud. Would a real person understand this in 5 seconds? Adjust until yes.</li>
+          <li>Minutes 55-60: Write it on paper. Post it somewhere visible.</li>
+        </ul>
+
+        <div class="prompt-block">
+          <p class="prompt-label">Offer Sprint Prompt</p>
+          <p>"Here's my rough offer: [paste it]. Make it 5x more specific. Then give me 4 more variations. One should be punchy and short. One should be detailed and complete. One should focus on the pain. One should focus on the outcome. Don't use words like 'transform', 'unlock', or 'leverage'. Write like a real person."</p>
+        </div>
+
+        <hr class="section-break">
+
+        <h3>The 2-Hour Session</h3>
+        <p><em>Full build mode. Three tasks. You draft, AI assists, you decide.</em></p>
+
+        <p>Two-hour sessions are for building things -- not thinking about building things. Come in with a plan or leave without much to show for it.</p>
+
+        <h4>Before You Start (5 minutes outside the session)</h4>
+        <p>Answer these before you sit down:</p>
+        <ol>
+          <li>What will I have when this session is over that I didn't have before?</li>
+          <li>What are the three tasks that get me there?</li>
+          <li>What will I NOT do today, even if it feels important?</li>
+        </ol>
+        <p>Three tasks:</p>
+        <ol>
+          <li><span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+          <li><span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+          <li><span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+        </ol>
+        <p>What you're not doing today: <span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+
+        <h4>Minutes 1-10: Session Launch</h4>
+        <p>Read your three tasks. Estimate time for each. Assign a rough order. This is the only planning you do. Then start.</p>
+
+        <h4>Minutes 10-50: Task 1</h4>
+
+        <div class="prompt-block">
+          <p class="prompt-label">Build Prompt</p>
+          <p>"I'm building [specific thing] for [specific person]. Here's what I have so far: [paste your draft or describe your progress]. What's missing? What's unclear? What would make this significantly better? Give me concrete suggestions, not general advice."</p>
+        </div>
+
+        <h4>Minutes 50-55: Break</h4>
+        <p>Step away. Walk. Drink water. Don't check social media.</p>
+
+        <h4>Minutes 55-95: Tasks 2 and 3</h4>
+        <p>Split based on your estimates. Keep moving. When you hit resistance on a task (and you will), use this:</p>
+
+        <div class="prompt-block">
+          <p class="prompt-label">Unstuck Prompt</p>
+          <p>"I'm stuck on [describe what you're working on]. Here's where I got stopped: [describe the sticking point]. Give me 3 ways to get unstuck. Make them practical. I have about [X] minutes to finish this."</p>
+        </div>
+
+        <h4>Minutes 95-110: Review and Integrate</h4>
+
+        <div class="prompt-block">
+          <p class="prompt-label">Review Prompt</p>
+          <p>"Here's what I built today: [describe or paste it]. If you were the person I'm trying to help, what questions would you still have after reading this? What would make you more confident this is worth your time or money?"</p>
+        </div>
+
+        <h4>Minutes 110-120: Log and Set Up Tomorrow</h4>
+        <p>Write a brief session log (2-3 sentences):</p>
+        <p>Today I finished: <span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+        <p>Still in progress: <span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+        <p>Tomorrow's first task: <span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+
+        <hr class="section-break">
+
+        <h3>The Weekly Review</h3>
+        <p><em>Sunday, 20 minutes. No excuses.</em></p>
+
+        <p>The weekly review is not optional. It's the mechanism that keeps you from drifting. Without it, weeks turn into months and nothing moves. Do this every Sunday. Same time. Same spot if you can.</p>
+
+        <h4>The 5 Questions</h4>
+
+        <p><strong>1. Did I do what I said I'd do this week?</strong><br>
+        Not "did I work hard." Did you do the specific things you said you'd do? Yes or no for each one. No partial credit. Honesty here is the whole point.</p>
+
+        <p><strong>2. What got in the way?</strong><br>
+        Not as an excuse. As data. Was it time? Energy? Uncertainty about what to do next? Fear? Name it. Patterns repeat. Naming them gives you a chance to change them.</p>
+
+        <p><strong>3. What's the one thing I actually moved forward this week?</strong><br>
+        Even in a hard week, something moved. Find it. Write it down. This matters more than you think. Momentum is partly psychological.</p>
+
+        <p><strong>4. What is the most important thing to focus on next week?</strong><br>
+        Not a list of 10. One thing. If you only finish one task next week, what should it be?</p>
+
+        <p><strong>5. What do I need to stop doing, start doing, or do differently?</strong><br>
+        Three options. Pick the one that applies most this week. You don't need all three every time.</p>
+
+        <div class="prompt-block">
+          <p class="prompt-label">AI Prompt -- Weekly Review</p>
+          <p>"I'm doing a weekly review of my business progress. Here's what I set out to do this week: [list]. Here's what I actually did: [list]. Here's what got in the way: [describe]. Based on this, what's the single most important shift I should make next week? Also tell me: am I avoiding something I should be facing?"</p>
+        </div>
+
+        <h4>What to Do With the Answers</h4>
+        <ul>
+          <li>If you answered YES to question 1: you're on pace. Keep going.</li>
+          <li>If you answered NO more than twice: you're overplanning. Cut your weekly list in half next week. Seriously.</li>
+          <li>If you can't answer question 3: nothing moved this week. That's a red flag. What was eating your time instead?</li>
+          <li>If question 4 gives you more than one answer: you don't have enough clarity yet. Go back to Component 1 and re-run the validation gate.</li>
+          <li>If question 5 reveals a pattern (same blocker three weeks in a row): that blocker is the work. Don't work around it. Work on it.</li>
+        </ul>
+
+        <p><strong>Next week, my one priority is:</strong> <span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+
+        <hr class="section-break">
+
+        <h3>A Note on Consistency vs. Intensity</h3>
+
+        <p>You don't need to go hard every day. You need to show up every day.</p>
+
+        <p>Thirty minutes, five days a week, for four weeks is 10 hours of real work. That's enough to validate an offer, build a simple product, and have 20 outreach conversations.</p>
+
+        <p>Most people don't fail because they don't have enough time. They fail because they stop showing up when the result isn't instant. The result isn't instant. Keep showing up anyway.</p>
+
+        <p style="font-size: 0.85rem; color: var(--gray-3); margin-top: 2rem;"><em>Solomon Apex Starter System -- Component 2 of 5</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       COMPONENT 03: OFFER BUILDER
+  ============================================ -->
+  <section class="component" id="component-03">
+    <div class="container">
+      <div class="component-header">
+        <p class="component-num">Component 03</p>
+        <h2>The Offer Builder</h2>
+        <p class="subtitle">Define What You Sell, Who You Sell It To, and How to Say It</p>
+      </div>
+
+      <div class="content">
+
+        <h3>Before You Start</h3>
+
+        <p>An offer is not a service description. It's not your resume. It's not a list of features. An offer answers one question for one specific person: "Is this for me?" If they can't answer that in five seconds, your offer needs work. This component walks you through building one that works.</p>
+
+        <p>Set aside 60-90 minutes to complete this in one sitting if you can. Or do one step per session. Either way, don't skip steps.</p>
+
+        <hr class="section-break">
+
+        <h3>Step 1: The One-Sentence Offer</h3>
+
+        <p>Every good offer starts with a single sentence that can survive a first impression.</p>
+
+        <p>The formula:<br>
+        <strong>"I help [specific person] [do specific thing] so they can [specific outcome]."</strong></p>
+
+        <p>The key word is specific. Each blank should be narrow enough that the right person immediately thinks "that's me" -- and the wrong person immediately thinks "that's not me."</p>
+
+        <p><strong>Examples of weak offers:</strong></p>
+        <ul>
+          <li>"I help businesses grow" (who doesn't?)</li>
+          <li>"I do marketing" (what kind? for whom?)</li>
+          <li>"I'm a consultant" (for what problem?)</li>
+        </ul>
+
+        <p><strong>Examples of strong offers:</strong></p>
+        <ul>
+          <li>"I help solo therapists fill their client schedule so they can stop worrying about where their next patient is coming from."</li>
+          <li>"I help first-time Airbnb hosts set up and optimize their listing so they can get to their first 5-star review without the guesswork."</li>
+          <li>"I help construction contractors create simple quotes and proposals so they can close more jobs without spending hours on paperwork."</li>
+        </ul>
+
+        <p>Write your first attempt -- even if it's rough:</p>
+        <p>I help <span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> do <span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> so they can <span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>.</p>
+        <p>Don't edit it yet. Just get something on the page.</p>
+
+        <div class="prompt-block">
+          <p class="prompt-label">AI Prompt -- Generate Variations</p>
+          <p>"Here's my draft offer sentence: [paste yours]. Generate 5 improved versions of this offer. Keep the formula: 'I help [specific person] do [specific thing] so they can [specific outcome].' Each version should vary in how specific or how outcome-focused it is. Use plain language. No hype words. No jargon. Write them like a real person talking to a real person."</p>
+        </div>
+
+        <h4>How to Choose the Right One</h4>
+        <p>Read each variation out loud. For each one, ask: Would the person I'm trying to help immediately recognize themselves? Would someone outside my target say "that's not for me"? (This is actually good.) Does it describe a real outcome? Would I be comfortable saying this to someone's face?</p>
+
+        <p>Your chosen offer sentence: <span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+
+        <p><strong>The 5-Second Test:</strong> Read your chosen sentence to one real person who doesn't know your business. Don't explain it first. Just read it. Then ask: "Who do you think this is for?" If they get it right, your offer passes. If they're confused, rewrite.</p>
+
+        <hr class="section-break">
+
+        <h3>Step 2: The Right Person</h3>
+
+        <p>Most people define their buyer too broadly. "Small business owners" is not a buyer definition. "Female restaurant owners with 2-5 employees who have been open less than three years and are doing their own marketing" is a buyer definition. Narrow is not limiting. Narrow is powerful.</p>
+
+        <h4>The 10 Questions</h4>
+        <p>Answer each one in a sentence or two. If you can't answer it, that's a gap -- go find out.</p>
+
+        <ol>
+          <li>How old are they, roughly? What stage of life or career are they in?</li>
+          <li>What do they do for work, and how long have they been doing it?</li>
+          <li>What is the one problem in their life or business that keeps them up at night?</li>
+          <li>What have they already tried to solve this problem? Why didn't it work?</li>
+          <li>What does a win look like for them? How would they describe success in their own words?</li>
+          <li>What do they read, watch, or listen to? Where do they go to learn?</li>
+          <li>Who do they trust? (Peers, industry voices, specific communities?)</li>
+          <li>What do buying decisions look like for them? Do they research heavily or buy on instinct?</li>
+          <li>What objection will they have before they say yes to you?</li>
+          <li>What would they be embarrassed to admit about this problem?</li>
+        </ol>
+
+        <div class="prompt-block">
+          <p class="prompt-label">AI Prompt -- Stress-Test Your Buyer Definition</p>
+          <p>"Here's my target buyer: [describe in 2-3 sentences based on your answers above]. Challenge this definition. What assumptions am I making that could be wrong? What's missing from this description? Are there sub-groups within this audience that are more specific and more likely to buy? Help me sharpen who I'm actually talking to."</p>
+        </div>
+
+        <h4>The Watering Hole Exercise</h4>
+        <p>Where does your buyer actually spend time? Not where you'd like to find them. Where they actually are.</p>
+
+        <p>List three real watering holes for your buyer:</p>
+        <ol>
+          <li><span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+          <li><span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+          <li><span class="fill-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+        </ol>
+
+        <p>These are not where you'll advertise yet. These are where you'll listen first. Spend one hour in each of these places reading and observing before you say anything. You will learn more about how to talk to your buyer in that hour than in a week of guessing.</p>
+
+        <hr class="section-break">
+
+        <h3>Step 3: The Price</h3>
+
+        <h4>The Backwards Framework</h4>
+        <ol>
+          <li>What is the outcome worth to them? Not what the work is worth to you. What is it worth to them?<br>
+          <em>Example: If you save a solo business owner 5 hours a week and they value their time at $50/hour, that's $200/week or roughly $800/month. You can charge $400/month and the math still makes sense for them.</em></li>
+          <li>What have they already paid (or are paying) for a partial solution that doesn't fully work?</li>
+          <li>What would they pay for the outcome itself -- not the service?</li>
+        </ol>
+
+        <h4>Three Price Tiers</h4>
+
+        <div class="path-card">
+          <h3>Tier 1 -- Low Entry ($50-$200)</h3>
+          <p>Use for: Information products, templates, guides, checklists, one-time simple deliverables. Best when the buyer needs to prove the concept works before committing more. Risk: Low price can signal low value. Don't go too low.</p>
+        </div>
+
+        <div class="path-card">
+          <h3>Tier 2 -- Mid-Range ($200-$1,500)</h3>
+          <p>Use for: Done-for-you projects, audits, strategy sessions, short engagements, digital courses with real depth. Best when the outcome is clear and the buyer has a real budget. This is where most first-time service offers should start.</p>
+        </div>
+
+        <div class="path-card">
+          <h3>Tier 3 -- Premium ($1,500+)</h3>
+          <p>Use for: Ongoing retainers, high-touch services, significant business outcomes. Best when you have proof (case studies, testimonials, your own results) and the relationship already exists. Don't start here. Build to here.</p>
+        </div>
+
+        <p><strong>Your First Offer Price:</strong> $<span class="fill-line" style="min-width: 80px;">&nbsp;</span></p>
+
+        <div class="prompt-block">
+          <p class="prompt-label">AI Prompt</p>
+          <p>"I'm selling [your offer] to [describe your buyer]. I'm considering charging $[your price]. Is this price in the right range for this type of offer? What factors would justify charging more? What factors might make buyers resist at this price? What would I need to add or change to make this a clear yes for the buyer?"</p>
+        </div>
+
+        <hr class="section-break">
+
+        <h3>Step 4: The One-Page Offer Doc</h3>
+
+        <p>This is the document you send or share when someone asks "what exactly do you do?" It's not a website. It's not a brochure. It's one page that answers the questions in the right order.</p>
+
+        <div class="path-card">
+          <h3>Template</h3>
+          <p><strong>[Your Name / Business Name]</strong></p>
+          <p><strong>[Your Offer Headline -- one sentence, punchy]</strong></p>
+          <hr>
+          <p><strong>Who This Is For:</strong><br>[2-3 sentences describing your specific buyer. Use language they'd use themselves.]</p>
+          <p><strong>The Problem:</strong><br>[1-2 sentences describing the exact pain. Be specific. No softening.]</p>
+          <p><strong>What I Do:</strong><br>[2-3 sentences describing your service or product. What happens, in what order, in what timeframe.]</p>
+          <p><strong>What You Get:</strong><br>[Bullet list of 3-5 specific deliverables or outcomes. Not features -- results.]</p>
+          <p><strong>What It Costs:</strong><br>$[price] [one-time / per month / per project]</p>
+          <p><strong>How to Get Started:</strong><br>[One clear next step. "Reply to this message." "Book a 15-minute call at [link]." "Send me a text at [number]."]</p>
+        </div>
+
+        <div class="prompt-block">
+          <p class="prompt-label">AI Prompt -- Write the First Draft</p>
+          <p>"I need to write a one-page offer document. Here are the details: Offer: [your offer sentence]. Buyer: [your buyer description]. Problem I solve: [describe the problem]. What they get: [list 3-5 outcomes]. Price: $[amount]. Next step to buy: [how they reach you]. Write a one-page offer document using these details. Use plain language. No hype. Write like a real person talking to another real person. Short paragraphs. Direct."</p>
+        </div>
+
+        <h4>Editing Checklist -- 5 Things Every Good Offer Has</h4>
+        <ul>
+          <li>The buyer recognizes themselves in the first 2 sentences</li>
+          <li>The problem is named specifically -- not softened or generalized</li>
+          <li>The outcome is described in terms of the buyer's life, not your process</li>
+          <li>The price is visible. No "contact for pricing" on a simple offer.</li>
+          <li>There is one clear, specific next step</li>
+        </ul>
+
+        <hr class="section-break">
+
+        <h3>Step 5: The Gut Check</h3>
+
+        <p>This is the last step before you take your offer to the market. Five questions. Answer them honestly.</p>
+
+        <p><strong>1. Could you deliver on this offer tomorrow if someone said yes?</strong><br>
+        If the answer is no, what specifically isn't ready? Your offer should describe what you can actually do now.</p>
+
+        <p><strong>2. Is there a real person in your life right now who has this exact problem?</strong><br>
+        Not a "type of person." A name. If you can't name one, you don't know your buyer well enough yet.</p>
+
+        <p><strong>3. Does your offer describe an outcome -- or just a service?</strong><br>
+        Read your offer sentence again. Does it tell the buyer what their life looks like after they work with you?</p>
+
+        <p><strong>4. Would you be comfortable putting your name on this?</strong><br>
+        Not "is it perfect." Is it honest? Does it describe what you actually do and what they'll actually get?</p>
+
+        <p><strong>5. Are you pricing it in a way that's sustainable for you?</strong><br>
+        If you'd resent the work at this price after three months, the price is wrong. Raise it or redefine the scope.</p>
+
+        <h4>What to Do If You Answer NO</h4>
+        <ul>
+          <li>NO to #1: Don't launch yet. Get the capability in place first. This usually takes less time than you think.</li>
+          <li>NO to #2: Go talk to real people before you finalize anything. Listen first.</li>
+          <li>NO to #3: Rewrite the offer sentence. Focus on the outcome the buyer wants, not the activity you perform.</li>
+          <li>NO to #4: Figure out what specifically feels off and fix it. Don't launch something you're not standing behind.</li>
+          <li>NO to #5: Raise the price. Adjust the scope. Pick one.</li>
+        </ul>
+
+        <p>If you answered YES to all five -- your offer is ready. Go to Component 4 -- The First Sale Playbook.</p>
+
+        <p style="font-size: 0.85rem; color: var(--gray-3); margin-top: 2rem;"><em>Solomon Apex Starter System -- Component 3 of 5</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       COMPONENT 04: FIRST SALE PLAYBOOK
+  ============================================ -->
+  <section class="component" id="component-04">
+    <div class="container">
+      <div class="component-header">
+        <p class="component-num">Component 04</p>
+        <h2>The First Sale Playbook</h2>
+        <p class="subtitle">How to Get Your First Paying Customer Without a Website, Without Ads, Without an Audience</p>
+      </div>
+
+      <div class="content">
+
+        <h3>The Mindset Reset</h3>
+
+        <p>Here's what most people believe: to get customers, you need an audience. You need a following. You need a website, a brand, a presence. You need to earn the right to sell.</p>
+
+        <p>That's not how first sales work. First sales come from people who already know you. They come from conversations, not campaigns. Your first customer isn't going to find you through a Google search or an Instagram ad. They're going to say yes because they trust you -- and you have people in your life right now who trust you. You've been building that trust for years. This playbook is about using it intentionally, not awkwardly. Not in a way that feels gross or desperate. In a way that feels like one friend telling another friend about something real.</p>
+
+        <p>Your first sale isn't a marketing problem. It's a conversation problem. And conversations are something you already know how to have.</p>
+
+        <hr class="section-break">
+
+        <h3>The Warm List</h3>
+
+        <p>Before you write a single outreach message, build the list.</p>
+
+        <h4>How to Build Your Warm List (20-30 people)</h4>
+
+        <p>Pull out a blank sheet of paper or open a new doc. Set a timer for 10 minutes. Write down every person you can think of who:</p>
+        <ul>
+          <li>Has a job or runs a business</li>
+          <li>Knows you and has some level of trust with you</li>
+          <li>Might have the problem you're solving -- or might know someone who does</li>
+        </ul>
+
+        <p>Go through categories to jog your memory: past coworkers and bosses, current or past clients, friends who have their own businesses, family members who are professionally active, people from church, gym, neighborhood, groups you're in, people you went to school with who are now working, former classmates, teammates, colleagues you've lost touch with, people you follow online who also follow or know you.</p>
+
+        <p>Don't filter yet. Don't decide who would or wouldn't be interested. Just write names.</p>
+
+        <div class="prompt-block">
+          <p class="prompt-label">AI Prompt -- Think of People You've Forgotten</p>
+          <p>"I'm building a list of people I know who might be interested in or connected to my offer. My offer is: [paste your offer sentence]. I've already listed some names. Help me brainstorm more categories of people I might be forgetting. I've been in [describe your work history briefly]. I'm active in [describe any communities, church, groups, etc.]. What categories of people from my background should I be thinking about?"</p>
+        </div>
+
+        <h4>Categorize Your List</h4>
+
+        <p>After you have 20-30 names, sort them into three buckets.</p>
+
+        <div class="path-card">
+          <h3>Hot -- Would probably buy today or very soon</h3>
+          <ul>
+            <li>They have the exact problem you solve</li>
+            <li>They've mentioned this problem to you before</li>
+            <li>They've already spent money trying to solve it</li>
+            <li>You have a strong, current relationship</li>
+          </ul>
+        </div>
+
+        <div class="path-card">
+          <h3>Warm -- Interested, curious, might buy later, or might refer someone who buys</h3>
+          <ul>
+            <li>They know you well but may not have the exact problem</li>
+            <li>They're connected to people who do</li>
+            <li>They're supportive of what you're doing</li>
+          </ul>
+        </div>
+
+        <div class="path-card">
+          <h3>Cool -- Might know someone who needs this</h3>
+          <ul>
+            <li>They don't have the problem themselves</li>
+            <li>But they know people who might</li>
+            <li>They're the kind of person who would make an introduction if you asked</li>
+          </ul>
+        </div>
+
+        <p>Most first sales come from the Hot list. First referrals come from the Warm list. Don't ignore the Cool list -- you never know who they know.</p>
+
+        <hr class="section-break">
+
+        <h3>The First Message</h3>
+
+        <p>The message that kills sales before they start sounds like this: "Hey! I just started a new business and I'm offering [long description]. I'd love to share more with you and see if you might be interested or know anyone who is! Here's my website..."</p>
+
+        <p>That message is about you. It asks for something before it offers anything. It feels like a pitch. People don't respond to pitches from friends. They respond to interest and genuine connection.</p>
+
+        <h4>The Right Framework</h4>
+        <p>The first message does three things:</p>
+        <ol>
+          <li>Makes contact like a real person, not a salesperson</li>
+          <li>References something real about them or your relationship</li>
+          <li>Opens a door without pushing them through it</li>
+        </ol>
+
+        <p>It does NOT include pricing, a website link, a full pitch, "check it out," or words like "opportunity" or "exciting news." The goal of the first message is one thing only: start a conversation.</p>
+
+        <h4>Three Templates</h4>
+
+        <div class="path-card">
+          <h3>Text (for people you know well)</h3>
+          <blockquote>"Hey [Name] -- random question: do you still [mention something about their work or situation]? I'm working on something and thought of you. Worth a quick catch-up?"</blockquote>
+          <p>Simple. Specific. Feels human. When they say "yeah, what's up?" -- that's the conversation.</p>
+        </div>
+
+        <div class="path-card">
+          <h3>DM (for LinkedIn, Instagram, or Facebook)</h3>
+          <blockquote>"Hey [Name] -- I've been following what you're building with [mention something specific from their profile or content]. I'm working on something that might actually be relevant to you -- specifically around [one-sentence description of the problem you solve]. Would you be up for a 10-minute call sometime? No pitch, just want to hear your perspective and share what I'm working on."</blockquote>
+          <p>This works because it's specific to them. Generic DMs get ignored.</p>
+        </div>
+
+        <div class="path-card">
+          <h3>Email (for someone more formal or professional)</h3>
+          <p><strong>Subject: Quick question for you</strong></p>
+          <blockquote>
+            <p>Hi [Name],</p>
+            <p>I've been thinking about [something relevant to their work or situation] and I wanted to reach out.</p>
+            <p>I've been building [one-sentence description of what you do] and I think it might be directly relevant to [describe their situation or challenge briefly].</p>
+            <p>Would you be open to a 15-minute call? I'd love to get your honest take and see if there's a fit.</p>
+            <p>[Your name]</p>
+          </blockquote>
+          <p>Short. Specific. One ask.</p>
+        </div>
+
+        <div class="prompt-block">
+          <p class="prompt-label">AI Prompt -- Customize Your Templates</p>
+          <p>"I'm reaching out to [describe the specific person -- their job, how I know them, what their situation is]. My offer is: [your offer sentence]. Write me a personalized version of each of these three message types: text, DM, and email. Make each one sound like me -- [describe your communication style: casual/professional/warm/direct]. The goal is to start a real conversation, not to sell immediately. No hype. No pressure."</p>
+        </div>
+
+        <hr class="section-break">
+
+        <h3>The Conversation</h3>
+
+        <p>They replied. They're interested. Now what? The conversation has one goal: understand their situation well enough to know if your offer actually helps them. That's it. Not to close them. Not to impress them. To understand.</p>
+
+        <h4>How to Go From "That Sounds Interesting" to "Here's My Price"</h4>
+
+        <p>Start with questions. Not a pitch:</p>
+        <ul>
+          <li>"Tell me what that looks like day to day for you."</li>
+          <li>"How long has that been an issue?"</li>
+          <li>"What have you tried so far?"</li>
+          <li>"What would it mean for you if that was handled?"</li>
+        </ul>
+
+        <p>Listen. Don't interrupt. Don't rush to the offer. When they've described the problem in their own words, reflect it back:</p>
+
+        <blockquote>"So it sounds like [summarize their problem in their language]. Is that right?"</blockquote>
+
+        <p>If they say yes, that's your signal. Now you can describe your offer -- briefly:</p>
+
+        <blockquote>"That's actually exactly what I built this for. Here's how it works: [2-3 sentences, no more]. I help people like you [specific outcome] in [timeframe] for [price]."</blockquote>
+
+        <p>Then stop talking. Let them respond.</p>
+
+        <h4>When They Say "Let Me Think About It"</h4>
+        <p>This is not a no. This is uncertainty. There's something they haven't said yet. Ask one of these:</p>
+        <ul>
+          <li>"Of course. What specifically would help you feel more confident?"</li>
+          <li>"Is it the price, the timing, or something about how it works?"</li>
+          <li>"What would need to be true for this to be a yes?"</li>
+        </ul>
+
+        <hr class="section-break">
+
+        <h3>The Close</h3>
+
+        <h4>The One Question That Closes More Sales Than Any Pitch</h4>
+
+        <p>After you've described your offer and answered their questions:</p>
+
+        <blockquote>"Does this feel like a fit for where you are right now?"</blockquote>
+
+        <p>This question gives them full ownership. It's not pressure. It invites a real answer. If they say yes, ask for the next step. If they say maybe or not quite, ask what would need to be different.</p>
+
+        <h4>The Three Most Common Objections</h4>
+
+        <div class="path-card">
+          <h3>"I can't afford it right now."</h3>
+          <p>This usually means one of two things: the value isn't clear enough, or they genuinely don't have the money.</p>
+          <p>If it's the first, ask: "Help me understand -- what would make it feel worth it?" Then listen and address it.</p>
+          <p>If it's the second, respect it: "That makes sense. When would be a better time?" Sometimes a smaller scope, a payment plan, or a lighter version of the offer works.</p>
+        </div>
+
+        <div class="path-card">
+          <h3>"I need to talk to my spouse / partner / [someone else]."</h3>
+          <p>Respect this fully. Ask: "Of course -- what questions do you think they'll have? I can make sure you have what you need to answer them." This helps you give them the right information without pressuring anyone.</p>
+        </div>
+
+        <div class="path-card">
+          <h3>"I'm not sure now is the right time."</h3>
+          <p>Ask: "What would make the timing better?" Sometimes the answer is real (launching a project, hiring, Q4 budget). Sometimes it's avoidance. Either way, their answer tells you what to do next.</p>
+        </div>
+
+        <h4>What to Do the Moment Someone Says Yes</h4>
+        <ol>
+          <li>Say: "Great. Let's lock this in." Then stop talking.</li>
+          <li>Confirm the next step in writing immediately -- text, email, whatever you have.</li>
+          <li>Send them a way to pay. Venmo, Zelle, PayPal, Stripe link -- right now, before the conversation ends.</li>
+          <li>Set a start date or first call before you get off the phone.</li>
+        </ol>
+        <p>Do not celebrate out loud in the moment. Do not overthink. Just move to the next step cleanly and confidently. You can celebrate after.</p>
+
+        <hr class="section-break">
+
+        <h3>The Follow-Through</h3>
+
+        <p>Your first customer is not just your first sale. They are your first proof. If you deliver well, they become your best marketing.</p>
+
+        <h4>How to Deliver So Well That It Becomes Your Best Marketing</h4>
+        <ul>
+          <li>Do exactly what you said you'd do. No more, no less to start. Reliability over surprise.</li>
+          <li>Communicate proactively. Don't make them chase you for updates.</li>
+          <li>Deliver early when you can. Even one day early creates a strong impression.</li>
+          <li>At the midpoint of the engagement, check in: "Is this what you expected? Is there anything you want to adjust?"</li>
+        </ul>
+
+        <h4>What to Ask When It's Done</h4>
+        <p>Wait until the outcome is visible -- not just when the work is technically complete. Then ask:</p>
+
+        <blockquote>"Now that [you've seen the results / we've finished / this is in place], I have two quick asks. First, would you be willing to write me a one or two sentence testimonial about your experience? Second, is there anyone in your world who has a similar situation I should know about?"</blockquote>
+
+        <h4>Testimonial Prompt for Your Client</h4>
+        <p>If they're willing but not sure what to write, give them this:</p>
+        <blockquote>"Just write 1-3 sentences about: what problem you had, what we did together, and what changed. That's it."</blockquote>
+        <p>The best testimonials are specific. "Solomon helped me get my social media consistent and I stopped stressing about it" beats "highly recommend!" every time.</p>
+
+        <p style="font-size: 0.85rem; color: var(--gray-3); margin-top: 2rem;"><em>Solomon Apex Starter System -- Component 4 of 5</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       COMPONENT 05: FOUNDATION CHECKLIST
+  ============================================ -->
+  <section class="component" id="component-05">
+    <div class="container">
+      <div class="component-header">
+        <p class="component-num">Component 05</p>
+        <h2>The Foundation Checklist</h2>
+        <p class="subtitle">What Every Solo Business Needs Before Spending Money on Anything</p>
+      </div>
+
+      <div class="content">
+
+        <h3>The Rule Behind This List</h3>
+
+        <p>Every item on this list passes one test: does it help you make a sale or serve a customer?</p>
+
+        <p>If it doesn't pass that test, it's not on the list. Logo design doesn't pass. A fancy website doesn't pass. Business cards don't pass. They feel productive. They are not.</p>
+
+        <p>You can spend two weeks "setting up your business" and end up with a beautiful logo, a polished website, and zero dollars earned. That's not a foundation. That's decoration.</p>
+
+        <p>This list is the real foundation. Everything you actually need. Almost all of it is free.</p>
+
+        <hr class="section-break">
+
+        <h3>The Non-Negotiables (All Free)</h3>
+
+        <p>These five things are the actual minimum. Without them, you can't operate. With them, you can.</p>
+
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="item-content">
+            <div class="item-title">A dedicated business email address</div>
+            <div class="item-desc">Gmail is fine. Go to gmail.com and create one for your business. It doesn't need to be on a custom domain yet. You need to keep business communication separate from personal. Every tool, every account, every customer contact goes through this email from the start. Setup time: 5 minutes.</div>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="item-content">
+            <div class="item-title">A Google account (Drive, Docs, Sheets)</div>
+            <div class="item-desc">If you created a Gmail, you already have this. Go to drive.google.com and confirm access to Docs and Sheets. These are your free business tools. Docs for proposals, offers, and documents. Sheets for tracking leads, customers, and income. You don't need Microsoft Office. Google Workspace is enough to run a business for a long time. Setup time: Already done if you have Gmail.</div>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="item-content">
+            <div class="item-title">A ChatGPT free account (your AI assistant)</div>
+            <div class="item-desc">Go to <a href="https://chat.openai.com" target="_blank">chat.openai.com</a> and create a free account. You can also use Claude at <a href="https://claude.ai" target="_blank">claude.ai</a> -- same idea, both free. Every prompt in this system was designed for a free AI tool. You don't need to pay for AI to use it well. The free versions are powerful enough to draft offers, write outreach messages, generate ideas, and save you hours. Setup time: 3 minutes.</div>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="item-content">
+            <div class="item-title">A way to accept payment</div>
+            <div class="item-desc">Pick one: Venmo, Zelle, Cash App, or PayPal (personal). All free. All instant. You need to be able to collect money the moment someone says yes. Your first customers will pay you through Venmo or Zelle. That's fine. That's how solo businesses start. When to upgrade: Once you're bringing in consistent revenue, look at <a href="https://stripe.com" target="_blank">Stripe</a> (free to set up, charges a transaction fee) or <a href="https://waveapps.com" target="_blank">Wave</a> invoicing (free). Not before. Setup time: Already done if you have a smartphone.</div>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="item-content">
+            <div class="item-title">A note-taking system</div>
+            <div class="item-desc">Pick one and use it. Apple Notes. Google Keep. A physical notebook. Notion (free plan). It does not matter which one. What matters is that it's the same one every time. Your business lives in your head right now. The moment it starts to grow, it needs to live somewhere you can find it. Consistency beats sophistication. Setup time: Pick one. Done.</div>
+          </div>
+        </div>
+
+        <hr class="section-break">
+
+        <h3>The Nice-to-Haves (Free or Nearly Free)</h3>
+
+        <p>You don't need these immediately. But as soon as you're having regular conversations and want to look more professional, add them in order.</p>
+
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="item-content">
+            <div class="item-title">A Calendly link for booking calls</div>
+            <div class="item-desc">Go to <a href="https://calendly.com" target="_blank">Calendly</a> and set up a free account. Create one event type: a 15-minute or 30-minute call. Connect it to your Google calendar. Instead of back-and-forth texting to find a time, you send one link. It signals you have a system. Cost: $0 on free plan. Setup time: 10 minutes.</div>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="item-content">
+            <div class="item-title">A simple one-page website</div>
+            <div class="item-desc">You don't need this to make your first sale. You do need it eventually. Best free options: <strong>Carrd.co</strong> (easiest, clean design, free plan, $9/year for custom domain), <strong>Google Sites</strong> (completely free, not as polished), <strong>Notion public page</strong> (if you're already using Notion). Start with Carrd. Include your offer sentence, who it's for, what they get, your price, and one way to reach you. That's it. Your website's only job right now: give people a place to land when they Google your name.</div>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="item-content">
+            <div class="item-title">A professional email on your domain</div>
+            <div class="item-desc">When you're ready to buy a domain (~$12-15/year), add a professional email for ~$6/month through Google Workspace or Zoho Mail (Zoho is free for one user). yourname@yourbusiness.com signals that you're serious. When to do it: After your first 3-5 paying customers. Not before.</div>
+          </div>
+        </div>
+
+        <hr class="section-break">
+
+        <h3>What to SKIP Until You Have Paying Customers</h3>
+
+        <p>These things feel important. They are not.</p>
+
+        <ul>
+          <li><strong>Logo:</strong> A logo does not make a sale. No customer has ever said "I was going to hire you but your logo wasn't ready." When you have consistent revenue, budget $100-300 from a real designer. But not yet.</li>
+          <li><strong>Fancy website:</strong> A complicated, multi-page website takes weeks to build, costs money, and changes nothing about whether you can sell your offer. Your first sale will happen through a conversation, not a website visit.</li>
+          <li><strong>Business cards:</strong> Save the $50.</li>
+          <li><strong>LLC or formal business structure:</strong> You need a legal entity when you have something to protect. Most solo businesses do fine as a sole proprietor until they're consistently earning $2,000-3,000/month or taking on clients with real contracts. When you get there, talk to a local accountant or use a service like ZenBusiness ($0-49/year). Until then, this is a distraction.</li>
+          <li><strong>Paid tools of any kind:</strong> <a href="https://www.canva.com" target="_blank">Canva</a> has a free plan. Notion has a free plan. <a href="https://calendly.com" target="_blank">Calendly</a> has a free plan. <a href="https://zoom.us" target="_blank">Zoom</a> has a free plan. Almost every tool you'll want has a free version. Pay only when the free version is genuinely holding you back and you have revenue to cover it.</li>
+        </ul>
+
+        <hr class="section-break">
+
+        <h3>The Order of Operations</h3>
+
+        <p>Do these in this order. Don't do step 4 until you've done steps 1-3. The sequence matters.</p>
+
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="item-content">
+            <div class="item-title">Step 1: Set up your business email</div>
+            <div class="item-desc">Everything else attaches to this. It's your business identity. Do this first.</div>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="item-content">
+            <div class="item-title">Step 2: Create your Google account (or confirm it's set up)</div>
+            <div class="item-desc">Connect Drive, Docs, and Sheets. Create a folder called "My Business." It exists. That's enough.</div>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="item-content">
+            <div class="item-title">Step 3: Set up your AI account</div>
+            <div class="item-desc">ChatGPT or Claude. Free. This is your drafting partner for the rest of this system. You'll use it today.</div>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="item-content">
+            <div class="item-title">Step 4: Confirm your payment method</div>
+            <div class="item-desc">Make sure you can send and receive money on at least one platform (Venmo, Zelle, Cash App). Test it if you haven't used it recently. You don't want to figure this out when someone says yes.</div>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="item-content">
+            <div class="item-title">Step 5: Set up your note-taking system</div>
+            <div class="item-desc">Open whatever you chose. Create a note called "Business." Write today's date. Write one sentence: what you're building. That's your starting point. Now it exists outside your head.</div>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="item-content">
+            <div class="item-title">Step 6: Now go do the work</div>
+            <div class="item-desc">You have what you need. The tools are in place. Go to Component 1 (The Builder's Map) if you haven't already, or go to whatever component is next for you.</div>
+          </div>
+        </div>
+
+        <h4 style="margin-top: 2rem;">Steps 7-11 (when you're ready)</h4>
+
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="item-content">
+            <div class="item-title">Step 7: Add <a href="https://calendly.com" target="_blank">Calendly</a></div>
+            <div class="item-desc">Once you're booking calls -- or once you want to make it easier to book calls -- set this up. Free plan is plenty to start.</div>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="item-content">
+            <div class="item-title">Step 8: Build your one-page website</div>
+            <div class="item-desc">Once you have a polished offer sentence and you've made at least one sale, build the one-page site. Use <a href="https://carrd.co" target="_blank">Carrd</a> ($19/year for a custom domain). Spend two hours on it. Move on.</div>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="item-content">
+            <div class="item-title">Step 9: Get a domain and professional email</div>
+            <div class="item-desc">Once you have consistent revenue and are starting to present yourself to more professional buyers, register your domain and add the email.</div>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="item-content">
+            <div class="item-title">Step 10: Start your email list with <a href="https://www.beehiiv.com/?via=solomon-apex" target="_blank">Beehiiv</a></div>
+            <div class="item-desc">The moment you have anything worth saying to more than 10 people -- start an email list. Beehiiv is free up to 2,500 subscribers and is built for people who want to grow. An email list is the only audience you actually own. Social media accounts get banned. Algorithms change. Your list stays yours.</div>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="item-content">
+            <div class="item-title">Step 11: When you're ready to run your whole operation from one place -- <a href="https://www.gohighlevel.com/?fp_ref=apexcommand" target="_blank">GoHighLevel</a></div>
+            <div class="item-desc">CRM, email, SMS, booking, pipelines, automations -- all in one platform. This is what serious operators use. Not for day one. But when you're ready to stop duct-taping tools together, this is where you land.</div>
+          </div>
+        </div>
+
+        <hr class="section-break">
+
+        <h3>A Note on the Temptation to Prepare Instead of Build</h3>
+
+        <p>Setting up tools feels like progress. It's not. It's preparation. Preparation is necessary. But it has diminishing returns fast.</p>
+
+        <p>There is a moment -- and most people hit it -- when you've set up everything, organized everything, read everything, and you still haven't made a single sale. That moment is uncomfortable. And it's also the moment that separates people who build businesses from people who plan to.</p>
+
+        <p>This checklist gets you through preparation in a day. Then the work starts. That's intentional.</p>
+
+        <p>Everything you need is already on your phone and your laptop. The rest is execution.</p>
+
+        <p style="font-size: 0.85rem; color: var(--gray-3); margin-top: 2rem;"><em>Solomon Apex Starter System -- Component 5 of 5</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CLOSING PAGE
+  ============================================ -->
+  <section class="closing" id="closing">
+    <div class="container">
+      <p class="cover-eyebrow" style="margin-bottom: 32px;">Solomon Apex&trade;</p>
+      <p class="tagline">"Our ceiling is their floor."</p>
+      <p>You now have the complete system. The map is in your hands. The only variable left is you. Build something real.</p>
+      <a href="https://apexcommandsystems.com" target="_blank" class="btn-gold">Visit Apex Command Systems &rarr;</a>
+      <div class="closing-divider"></div>
+      <p class="closing-footnote">Questions? <a href="mailto:support@apexcommandsystems.com" style="color: rgba(255,255,255,0.5);">support@apexcommandsystems.com</a></p>
+      <p class="closing-footnote" style="margin-top: 8px;">Solomon Apex Starter System &mdash; v1.0 &mdash; solomonapex.com</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">
+      <div class="logo">Solomon <span>Apex</span></div>
+      <div class="tagline">A Real Path to Launch</div>
+    </div>
+    <div style="display: flex; gap: 40px; flex-wrap: wrap;">
+      <div>
+        <p style="font-size: 0.8rem; color: var(--gray-3); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.1em;">Navigate</p>
+        <p><a href="/" style="color: var(--gray-3); font-size: 0.9rem;">Home</a></p>
+        <p><a href="/about.html" style="color: var(--gray-3); font-size: 0.9rem;">About</a></p>
+        <p><a href="/thank-you-purchase.html" style="color: var(--gray-3); font-size: 0.9rem;">My Purchase</a></p>
+      </div>
+      <div>
+        <p style="font-size: 0.8rem; color: var(--gray-3); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.1em;">Contact</p>
+        <p><a href="mailto:hello@apexcommandsystems.com" style="color: var(--gray-3); font-size: 0.9rem;">hello@apexcommandsystems.com</a></p>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    <p>© 2026 Solomon Apex. A product of 5th &amp; Lake LLC. All rights reserved.</p>
+    <div><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a></div>
+  </div>
+
+</body>
+</html>
