@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Tools & Ventures | Solomon Apex</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <style>
+    .hero-custom {
+      background: var(--navy);
+      color: white;
+      padding: 100px 24px 60px;
+      text-align: center;
+    }
+    .hero-custom .eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .hero-custom h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      margin-bottom: 20px;
+      line-height: 1.15;
+    }
+    .hero-custom p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.75);
+      max-width: 640px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    .content-section {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+    .content-section h2 {
+      font-size: 1.6rem;
+      color: var(--navy);
+      margin-bottom: 20px;
+    }
+    .content-section p {
+      color: #444;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    .examples-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin: 40px 0;
+    }
+    .example-card {
+      background: #f9f9f9;
+      border: 1px solid #eee;
+      border-top: 3px solid var(--gold);
+      border-radius: 4px;
+      padding: 24px;
+    }
+    .example-card h3 {
+      font-size: 1rem;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .example-card p {
+      font-size: 0.9rem;
+      color: #666;
+      margin: 0;
+    }
+    .pricing-block {
+      background: var(--navy);
+      color: white;
+      border-radius: 6px;
+      padding: 40px;
+      text-align: center;
+      margin: 40px 0;
+    }
+    .pricing-block .price {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--gold);
+      margin: 12px 0;
+    }
+    .pricing-block .price-note {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+    .equity-note {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+      font-style: italic;
+      margin-bottom: 24px;
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin: 32px 0;
+    }
+    @media (max-width: 600px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+    .col-block h3 {
+      font-size: 1rem;
+      color: var(--navy);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--gold);
+    }
+    .col-block ul {
+      padding-left: 18px;
+    }
+    .col-block ul li {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    .cta-section {
+      background: #f5f5f0;
+      padding: 60px 24px;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-size: 1.8rem;
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+    .cta-section p {
+      color: #555;
+      margin-bottom: 32px;
+      max-width: 540px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div>
+    <a href="/" class="nav-logo">Solomon <span>Apex</span></a>
+  </div>
+  <div class="nav-links" id="navLinks">
+    <a href="/blueprint.html">Free Blueprint</a>
+    <a href="/starter-system.html">Starter System</a>
+    <a href="/custom-tools.html" style="color: var(--gold);">Custom Builds</a>
+    <a href="/wealth-builder.html">Newsletter</a>
+  </div>
+  <div class="hamburger" id="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="hero-custom">
+  <div class="eyebrow">Custom Tools and Ventures</div>
+  <h1>You Have an Idea.<br>We Help You Build It.</h1>
+  <p>Some of the best products start as a conversation at a coffee shop or a napkin sketch at dinner. If you have an entrepreneurial idea that needs a digital tool, a platform, or an AI-powered product built around it, this is where that happens.</p>
+</div>
+
+<div class="content-section">
+  <h2>What This Is</h2>
+  <p>This offering is for entrepreneurs, innovators, and kingdom builders who have a vision for a tool, platform, or digital product and need the right partner to bring it to life. We co-develop, co-launch, and in select cases co-invest in the right opportunities.</p>
+  <p>These are not cookie-cutter builds. Every project starts with understanding the idea, the audience, and the outcome — then we build the simplest, most powerful version of it that can be tested and taken to market.</p>
+
+  <h2>What We Have Built</h2>
+  <div class="examples-grid">
+    <div class="example-card">
+      <h3>Church Storehouse</h3>
+      <p>A password-protected community resource exchange for churches — from borrowing a ladder to mobilizing 200 people after a flood. Now available at churchstorehouse.org.</p>
+    </div>
+    <div class="example-card">
+      <h3>Private Library Tools</h3>
+      <p>A personal book cataloging app with ISBN lookup, shelf tracking, and borrowing management. Built in hours, deployed the same day.</p>
+    </div>
+    <div class="example-card">
+      <h3>AI-Powered Research Platforms</h3>
+      <p>Custom research and knowledge tools built on AI foundations, including faith-based platforms for apologetics and discipleship.</p>
+    </div>
+    <div class="example-card">
+      <h3>Operational Prototypes</h3>
+      <p>Proof-of-concept tools that demonstrate a business model, attract partners, or validate a market before full investment.</p>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="col-block">
+      <h3>This is a good fit if you</h3>
+      <ul>
+        <li>Have a clear idea but don't know how to build it</li>
+        <li>Need a working prototype to show investors or partners</li>
+        <li>Want to take a product to market without hiring a dev team</li>
+        <li>Have a kingdom-aligned mission behind the idea</li>
+        <li>Are willing to move fast and iterate</li>
+      </ul>
+    </div>
+    <div class="col-block">
+      <h3>This is not a fit if you</h3>
+      <ul>
+        <li>Don't have a clear idea of what you want to build</li>
+        <li>Need enterprise-level infrastructure from day one</li>
+        <li>Are looking for the cheapest possible option</li>
+        <li>Want someone to do all the thinking for you</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pricing-block">
+    <div class="eyebrow" style="color: var(--gold); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px;">Investment</div>
+    <div class="price">Starting at $1,500</div>
+    <div class="price-note">Final pricing is scoped after a discovery conversation based on complexity, timeline, and required features.</div>
+    <div class="equity-note">Co-development and equity arrangements considered for select projects with the right mission and market fit.</div>
+    <a href="mailto:jeff@apexcommandsystems.com" class="btn-primary">Tell Us About Your Idea</a>
+  </div>
+
+  <h2>How It Works</h2>
+  <p><strong>Step 1 — The Idea Call.</strong> You bring the idea. We listen, ask hard questions, and tell you honestly whether we think it's buildable and worth building. No charge for this conversation.</p>
+  <p><strong>Step 2 — Scope and Proposal.</strong> If we move forward, we define exactly what gets built in phase one, what it will cost, and what done looks like.</p>
+  <p><strong>Step 3 — Build and Launch.</strong> We build it fast. You review it. We launch a working version you can put in front of real users.</p>
+  <p><strong>Step 4 — Iterate.</strong> Real users tell you what's missing. We build the next version based on actual feedback, not assumptions.</p>
+</div>
+
+<div class="cta-section">
+  <h2>What Are You Building?</h2>
+  <p>Every great product starts with a conversation. Tell us your idea and let's figure out together if we are the right team to bring it to life.</p>
+  <a href="mailto:jeff@apexcommandsystems.com" class="btn-primary">Start the Conversation</a>
+</div>
+
+<footer style="background: var(--navy); color: rgba(255,255,255,0.5); text-align: center; padding: 32px 24px; font-size: 0.8rem;">
+  &copy; 2026 Solomon Apex | 5th & Lake LLC &nbsp;|&nbsp; jeff@apexcommandsystems.com
+</footer>
+
+<script>
+function toggleNav() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+</script>
+</body>
+</html>
